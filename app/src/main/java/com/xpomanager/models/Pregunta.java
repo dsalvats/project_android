@@ -1,20 +1,31 @@
 package com.xpomanager.models;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.HashMap;
+import java.util.List;
 
 public class Pregunta {
 
     /*************
      * ATRIBUTOS *
      *************/
+    @SerializedName("Id")
     private int id;
+    @SerializedName("IsRespText")
     private boolean isRespText;
+    @SerializedName("ImagenPregunta")
     private String imagenPreguntaSrc;
+    @SerializedName("ImagenRespuestaCorrecta")
     private String imagenRespuestaCorrectaSrc;
+    @SerializedName("ImagenRespuestaIncorrecta1")
     private String imagenRespuestaIncorrecta1Src;
+    @SerializedName("ImagenRespuestaIncorrecta2")
     private String imagenRespuestaIncorrecta2Src;
+    @SerializedName("ImagenRespuestaIncorrecta3")
     private String imagenRespuestaIncorrecta3Src;
-    private HashMap<Idioma, PreguntaIdioma> preguntaIdiomas;
+    @SerializedName("PreguntaIdiomas")
+    private List<IdiomaPreguntaIdiomas> idiomaPreguntaIdiomas;
 
     /*****************
      * CONSTRUCTORES *
@@ -22,7 +33,7 @@ public class Pregunta {
     public Pregunta(int id, boolean isRespText, String imagenPreguntaSrc,
                     String imagenRespuestaCorrectaSrc, String imagenRespuestaIncorrecta1Src,
                     String imagenRespuestaIncorrecta2Src, String imagenRespuestaIncorrecta3Src,
-                    HashMap<Idioma, PreguntaIdioma> preguntaIdiomas) {
+                    List<IdiomaPreguntaIdiomas> idiomaPreguntaIdiomas) {
         this.id = id;
         this.isRespText = isRespText;
         this.imagenPreguntaSrc = imagenPreguntaSrc;
@@ -30,7 +41,7 @@ public class Pregunta {
         this.imagenRespuestaIncorrecta1Src = imagenRespuestaIncorrecta1Src;
         this.imagenRespuestaIncorrecta2Src = imagenRespuestaIncorrecta2Src;
         this.imagenRespuestaIncorrecta3Src = imagenRespuestaIncorrecta3Src;
-        this.preguntaIdiomas = preguntaIdiomas;
+        this.idiomaPreguntaIdiomas = idiomaPreguntaIdiomas;
     }
 
     public Pregunta() {
@@ -95,11 +106,11 @@ public class Pregunta {
         this.imagenRespuestaIncorrecta3Src = imagenRespuestaIncorrecta3Src;
     }
 
-    public HashMap<Idioma, PreguntaIdioma> getPreguntaIdiomas() {
-        return preguntaIdiomas;
+    public List<IdiomaPreguntaIdiomas> getIdiomaPreguntaIdiomas() {
+        return idiomaPreguntaIdiomas;
     }
 
-    public void setPreguntaIdiomas(HashMap<Idioma, PreguntaIdioma> preguntaIdiomas) {
-        this.preguntaIdiomas = preguntaIdiomas;
+    public void setIdiomaPreguntaIdiomas(List<IdiomaPreguntaIdiomas> idiomaPreguntaIdiomas) {
+        this.idiomaPreguntaIdiomas = idiomaPreguntaIdiomas;
     }
 }

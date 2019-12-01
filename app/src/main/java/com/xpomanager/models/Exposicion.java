@@ -1,8 +1,7 @@
 package com.xpomanager.models;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 import java.util.Map;
 
@@ -11,34 +10,52 @@ public class Exposicion {
     /*************
      * ATRIBUTOS *
      *************/
+    @SerializedName("Id")
     private int id;
+    @SerializedName("Nombre")
     private String nombre;
+    @SerializedName("Activo")
     private boolean activo;
-    private Date fechaInicio;
-    private Date fechaFin;
+    @SerializedName("FechaInicio")
+    private String fechaInicio;
+    @SerializedName("FechaFin")
+    private String fechaFin;
+    @SerializedName("DescripcionExpo")
     private String descripcionExpo;
+    @SerializedName("AdminUser")
     private String adminUser;
+    @SerializedName("AdminPassowrd")
     private String adminPassword;
+    @SerializedName("QuestionTimeOut")
     private int questionTimeOut;
+    @SerializedName("AnswerTimeOut")
     private int answerTimeOut;
+    @SerializedName("ReviewTimeOut")
     private int reviewTimeOut;
+    @SerializedName("AppImageSrc")
     private String appImageSrc;
+    @SerializedName("ReviewImageSrc")
     private String reviewImageSrc;
+    @SerializedName("Personaje")
     private List<Personaje> personajes;
+    @SerializedName("Idiomas")
     private List<Idioma> idiomas;
+    //@SerializedName("ExposicionIdiomas")
     private Map<Idioma, ExposicionIdioma> exposicionIdiomas;
-    private Map<Nivel, List<Pregunta>> preguntas;
+    @SerializedName("Preguntas")
+    private List<NivelPreguntas> nivelPreguntas;
+    @SerializedName("Niveles")
     private List<Nivel> niveles;
 
     /*****************
      * CONSTRUCTORES *
      *****************/
-    public Exposicion(int id, String nombre, boolean activo, Date fechaInicio, Date fechaFin,
+    public Exposicion(int id, String nombre, boolean activo, String fechaInicio, String fechaFin,
                       String descripcionExpo, String adminUser, String adminPassword,
                       int questionTimeOut, int answerTimeOut, int reviewTimeOut, String appImageSrc,
                       String reviewImageSrc, List<Personaje> personajes, List<Idioma> idiomas,
                       Map<Idioma, ExposicionIdioma> exposicionIdiomas,
-                      Map<Nivel, List<Pregunta>> preguntas, List<Nivel> niveles) {
+                      List<NivelPreguntas> nivelPreguntas, List<Nivel> niveles) {
         this.id = id;
         this.nombre = nombre;
         this.activo = activo;
@@ -55,7 +72,7 @@ public class Exposicion {
         this.personajes = personajes;
         this.idiomas = idiomas;
         this.exposicionIdiomas = exposicionIdiomas;
-        this.preguntas = preguntas;
+        this.nivelPreguntas = nivelPreguntas;
         this.niveles = niveles;
     }
 
@@ -89,19 +106,19 @@ public class Exposicion {
         this.activo = activo;
     }
 
-    public Date getFechaInicio() {
+    public String getFechaInicio() {
         return fechaInicio;
     }
 
-    public void setFechaInicio(Date fechaInicio) {
+    public void setFechaInicio(String fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
-    public Date getFechaFin() {
+    public String getFechaFin() {
         return fechaFin;
     }
 
-    public void setFechaFin(Date fechaFin) {
+    public void setFechaFin(String fechaFin) {
         this.fechaFin = fechaFin;
     }
 
@@ -193,12 +210,12 @@ public class Exposicion {
         this.exposicionIdiomas = exposicionIdiomas;
     }
 
-    public Map<Nivel, List<Pregunta>> getPreguntas() {
-        return preguntas;
+    public List<NivelPreguntas> getNivelPreguntas() {
+        return nivelPreguntas;
     }
 
-    public void setPreguntas(Map<Nivel, List<Pregunta>> preguntas) {
-        this.preguntas = preguntas;
+    public void setNivelPreguntas(List<NivelPreguntas> nivelPreguntas) {
+        this.nivelPreguntas = nivelPreguntas;
     }
 
     public List<Nivel> getNiveles() {

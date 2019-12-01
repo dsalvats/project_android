@@ -1,13 +1,19 @@
 package com.xpomanager.models;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Idioma {
 
     /*************
      * ATRIBUTOS *
      *************/
+    @SerializedName("Id")
     private int id;
+    @SerializedName("Activo")
     private boolean activo;
+    @SerializedName("Nombre")
     private String nombre;
+    @SerializedName("Imagen")
     private String imagenSrc;
 
     /*****************

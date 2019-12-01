@@ -1,18 +1,29 @@
 package com.xpomanager.models;
 
+import com.google.gson.annotations.SerializedName;
+
 public class PreguntaIdioma {
 
     /*************
      * ATRIBUTOS *
      *************/
+    @SerializedName("Id")
     private int id;
+    @SerializedName("Pregunta")
     private String pregunta;
+    @SerializedName("RespuestaCorrecta")
     private String respuestaCorrecta;
+    @SerializedName("RespuestaIncorrecta1")
     private String respuestaIncorrecta1;
+    @SerializedName("RespuestaIncorrecta2")
     private String respuestaIncorrecta2;
+    @SerializedName("RespuestaIncorrecta3")
     private String respuestaIncorrecta3;
+    @SerializedName("StringRespuestaCorrecta")
     private String stringRespuestaCorrecta;
+    @SerializedName("StringLinkRespuestaCorrecta")
     private String stringLinkRespuestaCorrecta;
+    @SerializedName("LinkRespuestaCorrecta")
     private String linkRespuestaCorrecta;
 
     /*****************
