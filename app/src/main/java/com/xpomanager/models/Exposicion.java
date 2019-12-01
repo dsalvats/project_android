@@ -2,6 +2,7 @@ package com.xpomanager.models;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -44,6 +45,7 @@ public class Exposicion {
     private Map<Idioma, ExposicionIdioma> exposicionIdiomas;
     @SerializedName("Preguntas")
     private List<NivelPreguntas> nivelPreguntas;
+    private HashMap<Nivel, List<Pregunta>> preguntas;
     @SerializedName("Niveles")
     private List<Nivel> niveles;
 
@@ -73,6 +75,7 @@ public class Exposicion {
         this.idiomas = idiomas;
         this.exposicionIdiomas = exposicionIdiomas;
         this.nivelPreguntas = nivelPreguntas;
+        this.preguntas = null;
         this.niveles = niveles;
     }
 
@@ -226,4 +229,11 @@ public class Exposicion {
         this.niveles = niveles;
     }
 
+    public HashMap<Nivel, List<Pregunta>> getPreguntas() {
+        return preguntas;
+    }
+
+    public void setPreguntas(HashMap<Nivel, List<Pregunta>> preguntas) {
+        this.preguntas = preguntas;
+    }
 }

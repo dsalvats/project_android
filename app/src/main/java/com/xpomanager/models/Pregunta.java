@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Pregunta {
 
@@ -26,6 +27,7 @@ public class Pregunta {
     private String imagenRespuestaIncorrecta3Src;
     @SerializedName("PreguntaIdiomas")
     private List<IdiomaPreguntaIdiomas> idiomaPreguntaIdiomas;
+    private Map<Idioma, PreguntaIdioma> preguntaIdiomas;
 
     /*****************
      * CONSTRUCTORES *
@@ -113,4 +115,13 @@ public class Pregunta {
     public void setIdiomaPreguntaIdiomas(List<IdiomaPreguntaIdiomas> idiomaPreguntaIdiomas) {
         this.idiomaPreguntaIdiomas = idiomaPreguntaIdiomas;
     }
+
+    public Map<Idioma, PreguntaIdioma> getPreguntaIdiomas() {
+        return preguntaIdiomas;
+    }
+
+    public void setPreguntaIdiomas(Map<Idioma, PreguntaIdioma> preguntaIdiomas) {
+        this.preguntaIdiomas = preguntaIdiomas;
+    }
+
 }

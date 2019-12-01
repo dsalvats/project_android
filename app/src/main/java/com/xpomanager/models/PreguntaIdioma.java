@@ -2,7 +2,9 @@ package com.xpomanager.models;
 
 import com.google.gson.annotations.SerializedName;
 
-public class PreguntaIdioma {
+import java.io.Serializable;
+
+public class PreguntaIdioma implements Serializable {
 
     /*************
      * ATRIBUTOS *

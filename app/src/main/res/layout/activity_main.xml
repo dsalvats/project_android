@@ -165,10 +165,9 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/TextViewLiteralNombreExposicion"
+                android:id="@+id/TextViewNombreExposicion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="&quot;Una MIRada a l'espai&quot;"
                 android:textAlignment="textEnd"
                 android:textColor="#ffffff"
                 android:textSize="30sp"
@@ -176,36 +175,33 @@
                 app:layout_constraintTop_toBottomOf="@id/TextViewLiteralExposicion" />
 
             <TextView
-                android:id="@+id/TextViewLiteralDescripcion"
+                android:id="@+id/TextViewDescripcion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Cine y astronáutica"
                 android:textAlignment="textEnd"
                 android:textColor="#ffffff"
                 android:textSize="30sp"
                 android:textStyle="italic"
-                app:layout_constraintTop_toBottomOf="@+id/TextViewLiteralNombreExposicion" />
+                app:layout_constraintTop_toBottomOf="@+id/TextViewNombreExposicion" />
 
             <TextView
-                android:id="@+id/TextViewLiteralDescripcion2"
+                android:id="@+id/TextViewDescripcion2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="A partir del 10 de diciembre de 2019"
                 android:textAlignment="textEnd"
                 android:textColor="#ffffff"
                 android:textSize="20sp"
-                app:layout_constraintTop_toBottomOf="@+id/TextViewLiteralDescripcion" />
+                app:layout_constraintTop_toBottomOf="@+id/TextViewDescripcion" />
 
             <TextView
                 android:id="@+id/TextViewLinkExposicion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:text="https://mnactec.cat/es/exposicion-detalle/una-mirada-al-espacio"
                 android:textAlignment="textEnd"
                 android:textColor="#ffffff"
-                android:textSize="10sp"
-                app:layout_constraintTop_toBottomOf="@+id/TextViewLiteralDescripcion2" />
+                android:textSize="12sp"
+                app:layout_constraintTop_toBottomOf="@+id/TextViewDescripcion2" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
