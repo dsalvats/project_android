@@ -1,6 +1,6 @@
 package com.xpomanager.models;
 
-public class Personaje {
+public class Idioma {
 
     /*************
      * ATRIBUTOS *
@@ -13,14 +13,14 @@ public class Personaje {
     /*****************
      * CONSTRUCTORES *
      *****************/
-    public Personaje(int id, boolean activo, String nombre, String imagenSrc) {
+    public Idioma(int id, boolean activo, String nombre, String imagenSrc) {
         this.id = id;
         this.activo = activo;
         this.nombre = nombre;
         this.imagenSrc = imagenSrc;
     }
 
-    public Personaje() {
+    public Idioma() {
     }
 
     /*********************

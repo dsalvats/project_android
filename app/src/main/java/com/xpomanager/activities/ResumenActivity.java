@@ -1,8 +1,10 @@
-package com.xpomanager;
+package com.xpomanager.activities;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.xpomanager.R;
 
 public class ResumenActivity extends AppCompatActivity {
 

@@ -1,6 +1,6 @@
 package com.xpomanager.models;
 
-public class Personaje {
+public class Nivel {
 
     /*************
      * ATRIBUTOS *
@@ -8,19 +8,17 @@ public class Personaje {
     private int id;
     private boolean activo;
     private String nombre;
-    private String imagenSrc;
 
     /*****************
      * CONSTRUCTORES *
      *****************/
-    public Personaje(int id, boolean activo, String nombre, String imagenSrc) {
+    public Nivel(int id, boolean activo, String nombre) {
         this.id = id;
         this.activo = activo;
         this.nombre = nombre;
-        this.imagenSrc = imagenSrc;
     }
 
-    public Personaje() {
+    public Nivel() {
     }
 
     /*********************
@@ -48,14 +46,6 @@ public class Personaje {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public String getImagenSrc() {
-        return imagenSrc;
-    }
-
-    public void setImagenSrc(String imagenSrc) {
-        this.imagenSrc = imagenSrc;
     }
 
 }
