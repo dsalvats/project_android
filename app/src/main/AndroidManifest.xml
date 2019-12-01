@@ -10,13 +10,25 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.MainActivity"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.PreguntaActivity"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity
+            android:name=".activities.RespuestaActivity"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity
+            android:name=".activities.ResumenActivity"
+            android:screenOrientation="landscape">
         </activity>
     </application>
 
