@@ -33,6 +33,7 @@ public class ControladorJuego {
     private Exposicion exposicion;
     private Map<PreguntaIdioma, Boolean> respuestas;
     private Iterator<Map.Entry<PreguntaIdioma, Boolean>> respuetasIterator;
+    private PreguntaIdioma currentPreguntaIdioma;
 
     /*****************
      * CONSTRUCTORES *
@@ -45,23 +46,21 @@ public class ControladorJuego {
         this.exposicion = exposicion;
         this.respuestas = generateRespuestas();
         this.respuetasIterator = respuestas.entrySet().iterator();
+        this.currentPreguntaIdioma = null;
     }
 
     /***********
      * MÉTODOS *
      ***********/
-    public String getStringProgress() {
-        return getStringProgress(null);
-    }
 
-    public String getStringProgress(PreguntaIdioma preguntaIdioma) {
+    public String getStringProgress() {
         StringBuilder sb = new StringBuilder();
 
         sb.append("Pregunta ");
-        if (preguntaIdioma == null) {
+        if (currentPreguntaIdioma == null) {
             sb.append(getTotalPreguntas());
         } else {
-            sb.append(getCurrentPregunta(preguntaIdioma));
+            sb.append(getCurrentPregunta(currentPreguntaIdioma));
         }
         sb.append("/");
         sb.append(getTotalPreguntas());
@@ -103,6 +102,10 @@ public class ControladorJuego {
 
         if (respuetasIterator.hasNext()) {
             preguntaIdioma = respuetasIterator.next().getKey();
+
+            currentPreguntaIdioma = preguntaIdioma;
+        } else {
+            currentPreguntaIdioma = null;
         }
 
         return preguntaIdioma;

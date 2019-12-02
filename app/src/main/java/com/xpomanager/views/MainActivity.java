@@ -2,6 +2,7 @@ package com.xpomanager.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -25,6 +26,12 @@ public class MainActivity extends AppCompatActivity {
     ImageView imageViewPersonaje;
     ImageView imageViewIdioma;
     ImageView imageViewNivel;
+
+    @SuppressLint("MissingSuperCall")
+    @Override
+    public void onBackPressed()
+    {
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
                 if (controladorPrincipal.getControladorJuego().hasNextPregunta()) {
                     Intent intent = new Intent(view.getContext(), PreguntaActivity.class);
                     startActivityForResult(intent, 0);
+                    finish();
                 }
             }
         });

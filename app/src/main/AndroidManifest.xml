@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.xpomanager">
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".controllers.ControladorPrincipal"
@@ -12,9 +13,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
             android:name=".views.MainActivity"
+            android:noHistory="true"
             android:screenOrientation="landscape">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,16 +27,16 @@
         </activity>
         <activity
             android:name=".views.PreguntaActivity"
-            android:screenOrientation="landscape">
-        </activity>
+            android:noHistory="true"
+            android:screenOrientation="landscape"></activity>
         <activity
             android:name=".views.RespuestaActivity"
-            android:screenOrientation="landscape">
-        </activity>
+            android:noHistory="true"
+            android:screenOrientation="landscape"></activity>
         <activity
             android:name=".views.ResumenActivity"
-            android:screenOrientation="landscape">
-        </activity>
+            android:noHistory="true"
+            android:screenOrientation="landscape"></activity>
     </application>
 
 </manifest>

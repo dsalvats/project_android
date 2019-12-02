@@ -1,7 +1,9 @@
 package com.xpomanager.views;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.TextView;
 
@@ -35,6 +37,13 @@ public class PreguntaActivity extends AppCompatActivity {
     TextView textViewRespuesta3;
     TextView textViewRespuesta4;
     TextView textViewResumen;
+    TextView textViewTiempo;
+    CountDownTimer timer;
+
+    @SuppressLint("MissingSuperCall")
+    @Override
+    public void onBackPressed() {
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +65,8 @@ public class PreguntaActivity extends AppCompatActivity {
         textViewEntrarId = findViewById(R.id.TextViewEntrarId);
         textViewEntrarId.setText(controladorJuego.getGameId());
         textViewResumen = findViewById(R.id.TextViewResumen);
-        textViewResumen.setText(controladorJuego.getStringProgress(preguntaIdioma));
+        textViewResumen.setText(controladorJuego.getStringProgress());
+        textViewTiempo = findViewById(R.id.TextViewTimpo);
 
         // RESPUESTAS ConstraintLayouts
         constraintLayoutRespuesta1 = findViewById(R.id.ConstraintLayoutLateralRespuesta1);
@@ -114,24 +124,52 @@ public class PreguntaActivity extends AppCompatActivity {
             }
         });
 
+        timer = new CountDownTimer(11000, 1000) //10 second Timer
+        {
+            public void onTick(long l)
+            {
+                int tiempo = Integer.parseInt(textViewTiempo.getText().toString());
+                tiempo--;
+
+                textViewTiempo.setText(String.valueOf(tiempo));
+            }
+
+            @Override
+            public void onFinish()
+            {
+                responder(findViewById(R.id.TextViewTimpo));
+            }
+        }.start();
+
     }
 
     /************
      * MÉTODOES *
      ************/
+    private void responder(View view) {
+        responder(view, null);
+    }
     private void responder(View view, TextView textView) {
+
+        timer.cancel();
 
         Intent intent = new Intent(view.getContext(), RespuestaActivity.class);
 
-        if (textView.getText().equals(preguntaIdioma.getRespuestaCorrecta())) {
-            controladorJuego.asignarRespuesta(preguntaIdioma, true);
-            intent.putExtra("Acierto", true);
+        if (view !=  null && textView != null) {
+            if (textView.getText().equals(preguntaIdioma.getRespuestaCorrecta())) {
+                controladorJuego.asignarRespuesta(preguntaIdioma, true);
+                intent.putExtra("Acierto", true);
+            } else {
+                controladorJuego.asignarRespuesta(preguntaIdioma, false);
+                intent.putExtra("Acierto", false);
+            }
         } else {
-            intent.putExtra("Acierto", false);
+            controladorJuego.asignarRespuesta(preguntaIdioma, false);
         }
 
         intent.putExtra("PreguntaIdioma", preguntaIdioma);
         startActivityForResult(intent, 0);
+        finish();
     }
 
 }

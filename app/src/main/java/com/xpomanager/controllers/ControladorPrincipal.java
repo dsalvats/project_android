@@ -48,7 +48,7 @@ public class ControladorPrincipal extends Application {
     public void onCreate() {
         super.onCreate();
         cargarJson();
-        transformExposiciones();
+        transformExposicion();
     }
 
     public void iniciarJuego(Personaje personaje, Idioma idioma, Nivel nivel) {
@@ -70,7 +70,7 @@ public class ControladorPrincipal extends Application {
         }
     }
 
-    private void transformExposiciones() {
+    private void transformExposicion() {
         HashMap<Nivel, List<Pregunta>> preguntas = new HashMap<>();
         HashMap<Idioma, PreguntaIdioma> preguntaIdiomas;
 

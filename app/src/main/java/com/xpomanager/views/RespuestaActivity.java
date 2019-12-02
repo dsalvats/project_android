@@ -1,5 +1,6 @@
 package com.xpomanager.views;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -23,6 +24,12 @@ public class RespuestaActivity extends AppCompatActivity {
     TextView textViewRespuestaBool;
     TextView textViewResumen;
 
+    @SuppressLint("MissingSuperCall")
+    @Override
+    public void onBackPressed()
+    {
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,14 +46,16 @@ public class RespuestaActivity extends AppCompatActivity {
 
         textViewRespuestaBool = findViewById(R.id.TextViewRespuestaBool);
         textViewResumen = findViewById(R.id.TextViewResumen);
-        textViewResumen.setText(controladorJuego.getStringProgress(preguntaIdioma));
+        textViewResumen.setText(controladorJuego.getStringProgress());
 
         if (acierto != null) {
             if (acierto) {
                 textViewRespuestaBool.setText("CORRECT ANSWER!!!");
             } else {
-                textViewRespuestaBool.setText("WRONG ANSWER");
+                textViewRespuestaBool.setText("Wrong answer");
             }
+        } else {
+            textViewRespuestaBool.setText("Timeout!");
         }
 
 
@@ -63,6 +72,7 @@ public class RespuestaActivity extends AppCompatActivity {
                     Intent intent = new Intent(view.getContext(), ResumenActivity.class);
                     startActivityForResult(intent, 0);
                 }
+                finish();
             }
         });
 

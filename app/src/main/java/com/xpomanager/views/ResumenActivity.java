@@ -1,5 +1,6 @@
 package com.xpomanager.views;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -20,6 +21,12 @@ public class ResumenActivity extends AppCompatActivity {
     ControladorJuego controladorJuego;
     TextView textViewReview;
     ImageView imageViewInicio;
+
+    @SuppressLint("MissingSuperCall")
+    @Override
+    public void onBackPressed()
+    {
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +49,7 @@ public class ResumenActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), MainActivity.class);
                 startActivityForResult(intent, 0);
+                finish();
             }
         });
     }
