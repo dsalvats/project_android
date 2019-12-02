@@ -1,4 +1,4 @@
-package com.xpomanager.classes;
+package com.xpomanager.controllers;
 
 import android.app.Application;
 

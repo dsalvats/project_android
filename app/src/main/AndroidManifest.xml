@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
-        android:name=".classes.ControladorPrincipal"
+        android:name=".controllers.ControladorPrincipal"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activities.MainActivity"
+            android:name=".views.MainActivity"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,15 +22,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.PreguntaActivity"
+            android:name=".views.PreguntaActivity"
             android:screenOrientation="landscape">
         </activity>
         <activity
-            android:name=".activities.RespuestaActivity"
+            android:name=".views.RespuestaActivity"
             android:screenOrientation="landscape">
         </activity>
         <activity
-            android:name=".activities.ResumenActivity"
+            android:name=".views.ResumenActivity"
             android:screenOrientation="landscape">
         </activity>
     </application>

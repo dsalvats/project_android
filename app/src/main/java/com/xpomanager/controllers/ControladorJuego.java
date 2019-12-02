@@ -1,4 +1,4 @@
-package com.xpomanager.classes;
+package com.xpomanager.controllers;
 
 import com.xpomanager.models.Exposicion;
 import com.xpomanager.models.Idioma;
@@ -8,8 +8,11 @@ import com.xpomanager.models.Pregunta;
 import com.xpomanager.models.PreguntaIdioma;
 
 import java.security.SecureRandom;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 public class ControladorJuego {
@@ -47,6 +50,54 @@ public class ControladorJuego {
     /***********
      * MÉTODOS *
      ***********/
+    public String getStringProgress() {
+        return getStringProgress(null);
+    }
+
+    public String getStringProgress(PreguntaIdioma preguntaIdioma) {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("Pregunta ");
+        if (preguntaIdioma == null) {
+            sb.append(getTotalPreguntas());
+        } else {
+            sb.append(getCurrentPregunta(preguntaIdioma));
+        }
+        sb.append("/");
+        sb.append(getTotalPreguntas());
+        sb.append(" - Aciertos ");
+        sb.append(getPreguntasAcertadas());
+
+        return sb.toString();
+    }
+
+    // TODO: Pasar respuestas a LinkedHashMap
+    private int getCurrentPregunta(PreguntaIdioma preguntaIdioma) {
+        //List<PreguntaIdioma> indexes = new ArrayList<>(respuestas.keySet());
+        int index = 0;
+
+        for (PreguntaIdioma key: respuestas.keySet()) {
+            index++;
+            if (key.equals(preguntaIdioma)) {
+                break;
+            }
+        }
+
+        return index;
+    }
+
+    private int getTotalPreguntas() {
+        return respuestas.size();
+    }
+
+    private int getPreguntasAcertadas() {
+        return Collections.frequency(respuestas.values(), true);
+    }
+
+    public void asignarRespuesta(PreguntaIdioma preguntaIdioma, Boolean acierto) {
+            respuestas.put(preguntaIdioma, acierto);
+    }
+
     public PreguntaIdioma siguientePregunta() {
         PreguntaIdioma preguntaIdioma = null;
 

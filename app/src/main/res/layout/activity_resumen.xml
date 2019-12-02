@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#666666"
-    tools:context=".activities.ResumenActivity">
+    tools:context=".views.ResumenActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/ConstraintLayoutBackground"
@@ -70,14 +70,13 @@
                 app:layout_constraintWidth_percent="0.7">
 
                 <TextView
-                    android:id="@+id/TextViewRespuestaBool"
+                    android:id="@+id/TextViewReview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="24dp"
                     android:layout_marginEnd="24dp"
                     android:layout_marginBottom="24dp"
-                    android:text="Pregunta 5 / Encerts 0"
                     android:textAlignment="center"
                     android:textColor="#ffffff"
                     android:textSize="60sp"
@@ -97,7 +96,7 @@ Escanegeu el codi d’IQ i visiteu el nostre lloc web per obtenir la teva recomp
 Que la força t'acompanyi !"
                     android:textColor="#ffffff"
                     android:textSize="24sp"
-                    app:layout_constraintTop_toBottomOf="@id/TextViewRespuestaBool" />
+                    app:layout_constraintTop_toBottomOf="@id/TextViewReview" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

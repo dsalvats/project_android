@@ -1,8 +1,7 @@
-package com.xpomanager.activities;
+package com.xpomanager.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Person;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,15 +9,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.xpomanager.R;
-import com.xpomanager.classes.ControladorPrincipal;
+import com.xpomanager.controllers.ControladorPrincipal;
 import com.xpomanager.models.Exposicion;
-import com.xpomanager.models.ExposicionIdioma;
 import com.xpomanager.models.Idioma;
 import com.xpomanager.models.Nivel;
 import com.xpomanager.models.Personaje;
-import com.xpomanager.models.PreguntaIdioma;
-
-import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
 

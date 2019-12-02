@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#666666"
-    tools:context=".activities.RespuestaActivity">
+    tools:context=".views.RespuestaActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/ConstraintLayoutBackground"
@@ -160,7 +160,6 @@
                     android:id="@+id/TextViewResumen"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Pregunta 1/5 - Aciertos 0"
                     android:textAlignment="viewEnd"
                     android:textColor="#ffffff"
                     android:textSize="24sp"
@@ -186,7 +185,6 @@
                 android:layout_marginBottom="24dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginEnd="24dp"
-                android:text="CORRECT ANSWER !!!"
                 android:textAlignment="center"
                 android:textColor="#ffffff"
                 android:textSize="60sp"
