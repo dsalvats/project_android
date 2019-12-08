@@ -1,98 +1,97 @@
 package com.xpomanager.models;
 
+import com.google.gson.annotations.SerializedName;
+
 public class ExposicionIdioma {
 
     /*************
      * ATRIBUTOS *
      *************/
+    @SerializedName("LangId")
     private int id;
-    private String stringNombre;
-    private String stringIntro;
-    private String stringFechaDesde;
-    private String stringFechaHasta;
-    private String stringLinkExposicion;
-    private String stringIdPlayer;
-    private String stringEnterId;
-    private String stringHelpIdPlayer;
-    private String stringHelpLanguage;
-    private String stringSelectCharacter;
-    private String stringHelpCharacter;
-    private String stringSelectLevel;
-    private String stringHelpLevel;
-    private String stringExit;
-    private String stringHelpExit;
-    private String stringQuestion;
-    private String stringHelpQuestion;
-    private String stringHits;
-    private String stringHelpHit;
-    private String stringCorrectAnswer;
-    private String stringWrongAnswer;
-    private String stringHelpAnswer;
-    private String stringNext;
-    private String stringHelpNext;
-    private String stringReviewCongratulations;
-    private String stringReviewId;
-    private String stringReviewProposal;
-    private String stringSalutations;
-    private String stringHelpFinalReview;
-    private String stringLinkFinalReview;
+    @SerializedName("StartEnterId")
+    private String startEnterId;
+    @SerializedName("StartPlayButton")
+    private String startPlayButton;
+    @SerializedName("StartExposition")
+    private String startExposition;
+    @SerializedName("StartExpoTitle")
+    private String startExpoTitle;
+    @SerializedName("StartExpoIntro")
+    private String startExpoIntro;
+    @SerializedName("StartExpoDateFrom")
+    private String startExpoDateFrom;
+    @SerializedName("StartExpoDateTo")
+    private String startExpoDateTo;
+    @SerializedName("StartExpoURL")
+    private String startExpoURL;
+    @SerializedName("Question")
+    private String question;
+    @SerializedName("Hits")
+    private String hits;
+    @SerializedName("QstnTXT1")
+    private String qstnTXT1;
+    @SerializedName("QstnTXT2")
+    private String qstnTXT2;
+    @SerializedName("AnswerOK")
+    private String answerOK;
+    @SerializedName("AnswerKO")
+    private String answerKO;
+    @SerializedName("NextButton")
+    private String nextButton;
+    @SerializedName("SummCongrats")
+    private String summCongrats;
+    @SerializedName("SummGameText")
+    private String summGameText;
+    @SerializedName("SummComment")
+    private String summComment;
+    @SerializedName("SummBye")
+    private String summBye;
+    @SerializedName("SummURLText")
+    private String summURLText;
+    @SerializedName("SummURL")
+    private String summURL;
 
     /*****************
      * CONSTRUCTORES *
      *****************/
-    public ExposicionIdioma(int id, String stringNombre, String stringIntro,
-                            String stringFechaDesde, String stringFechaHasta,
-                            String stringLinkExposicion, String stringIdPlayer,
-                            String stringEnterId, String stringHelpIdPlayer,
-                            String stringHelpLanguage, String stringSelectCharacter,
-                            String stringHelpCharacter, String stringSelectLevel,
-                            String stringHelpLevel, String stringExit, String stringHelpExit,
-                            String stringQuestion, String stringHelpQuestion, String stringHits,
-                            String stringHelpHit, String stringCorrectAnswer,
-                            String stringWrongAnswer, String stringHelpAnswer, String stringNext,
-                            String stringHelpNext, String stringReviewCongratulations,
-                            String stringReviewId, String stringReviewProposal,
-                            String stringSalutations, String stringHelpFinalReview,
-                            String stringLinkFinalReview) {
+    public ExposicionIdioma(int id, String startEnterId, String startPlayButton,
+                            String startExposition, String startExpoTitle, String startExpoIntro,
+                            String startExpoDateFrom, String startExpoDateTo, String startExpoURL,
+                            String question, String hits, String qstnTXT1, String qstnTXT2,
+                            String answerOK, String answerKO, String nextButton, String summCongrats,
+                            String summGameText, String summComment, String summBye,
+                            String summURLText, String summURL) {
         this.id = id;
-        this.stringNombre = stringNombre;
-        this.stringIntro = stringIntro;
-        this.stringFechaDesde = stringFechaDesde;
-        this.stringFechaHasta = stringFechaHasta;
-        this.stringLinkExposicion = stringLinkExposicion;
-        this.stringIdPlayer = stringIdPlayer;
-        this.stringEnterId = stringEnterId;
-        this.stringHelpIdPlayer = stringHelpIdPlayer;
-        this.stringHelpLanguage = stringHelpLanguage;
-        this.stringSelectCharacter = stringSelectCharacter;
-        this.stringHelpCharacter = stringHelpCharacter;
-        this.stringSelectLevel = stringSelectLevel;
-        this.stringHelpLevel = stringHelpLevel;
-        this.stringExit = stringExit;
-        this.stringHelpExit = stringHelpExit;
-        this.stringQuestion = stringQuestion;
-        this.stringHelpQuestion = stringHelpQuestion;
-        this.stringHits = stringHits;
-        this.stringHelpHit = stringHelpHit;
-        this.stringCorrectAnswer = stringCorrectAnswer;
-        this.stringWrongAnswer = stringWrongAnswer;
-        this.stringHelpAnswer = stringHelpAnswer;
-        this.stringNext = stringNext;
-        this.stringHelpNext = stringHelpNext;
-        this.stringReviewCongratulations = stringReviewCongratulations;
-        this.stringReviewId = stringReviewId;
-        this.stringReviewProposal = stringReviewProposal;
-        this.stringSalutations = stringSalutations;
-        this.stringHelpFinalReview = stringHelpFinalReview;
-        this.stringLinkFinalReview = stringLinkFinalReview;
+        this.startEnterId = startEnterId;
+        this.startPlayButton = startPlayButton;
+        this.startExposition = startExposition;
+        this.startExpoTitle = startExpoTitle;
+        this.startExpoIntro = startExpoIntro;
+        this.startExpoDateFrom = startExpoDateFrom;
+        this.startExpoDateTo = startExpoDateTo;
+        this.startExpoURL = startExpoURL;
+        this.question = question;
+        this.hits = hits;
+        this.qstnTXT1 = qstnTXT1;
+        this.qstnTXT2 = qstnTXT2;
+        this.answerOK = answerOK;
+        this.answerKO = answerKO;
+        this.nextButton = nextButton;
+        this.summCongrats = summCongrats;
+        this.summGameText = summGameText;
+        this.summComment = summComment;
+        this.summBye = summBye;
+        this.summURLText = summURLText;
+        this.summURL = summURL;
     }
 
     public ExposicionIdioma() {
     }
 
-    /**********************
-     * GETTERS & SETTERTS *
-     **********************/
+    /*********************
+     * GETTERS & SETTERS *
+     *********************/
     public int getId() {
         return id;
     }
@@ -101,244 +100,171 @@ public class ExposicionIdioma {
         this.id = id;
     }
 
-    public String getStringNombre() {
-        return stringNombre;
+    public String getStartEnterId() {
+        return startEnterId;
     }
 
-    public void setStringNombre(String stringNombre) {
-        this.stringNombre = stringNombre;
+    public void setStartEnterId(String startEnterId) {
+        this.startEnterId = startEnterId;
     }
 
-    public String getStringIntro() {
-        return stringIntro;
+    public String getStartPlayButton() {
+        return startPlayButton;
     }
 
-    public void setStringIntro(String stringIntro) {
-        this.stringIntro = stringIntro;
+    public void setStartPlayButton(String startPlayButton) {
+        this.startPlayButton = startPlayButton;
     }
 
-    public String getStringFechaDesde() {
-        return stringFechaDesde;
+    public String getStartExposition() {
+        return startExposition;
     }
 
-    public void setStringFechaDesde(String stringFechaDesde) {
-        this.stringFechaDesde = stringFechaDesde;
+    public void setStartExposition(String startExposition) {
+        this.startExposition = startExposition;
     }
 
-    public String getStringFechaHasta() {
-        return stringFechaHasta;
+    public String getStartExpoTitle() {
+        return startExpoTitle;
     }
 
-    public void setStringFechaHasta(String stringFechaHasta) {
-        this.stringFechaHasta = stringFechaHasta;
+    public void setStartExpoTitle(String startExpoTitle) {
+        this.startExpoTitle = startExpoTitle;
     }
 
-    public String getStringLinkExposicion() {
-        return stringLinkExposicion;
+    public String getStartExpoIntro() {
+        return startExpoIntro;
     }
 
-    public void setStringLinkExposicion(String stringLinkExposicion) {
-        this.stringLinkExposicion = stringLinkExposicion;
+    public void setStartExpoIntro(String startExpoIntro) {
+        this.startExpoIntro = startExpoIntro;
     }
 
-    public String getStringIdPlayer() {
-        return stringIdPlayer;
+    public String getStartExpoDateFrom() {
+        return startExpoDateFrom;
     }
 
-    public void setStringIdPlayer(String stringIdPlayer) {
-        this.stringIdPlayer = stringIdPlayer;
+    public void setStartExpoDateFrom(String startExpoDateFrom) {
+        this.startExpoDateFrom = startExpoDateFrom;
     }
 
-    public String getStringEnterId() {
-        return stringEnterId;
+    public String getStartExpoDateTo() {
+        return startExpoDateTo;
     }
 
-    public void setStringEnterId(String stringEnterId) {
-        this.stringEnterId = stringEnterId;
+    public void setStartExpoDateTo(String startExpoDateTo) {
+        this.startExpoDateTo = startExpoDateTo;
     }
 
-    public String getStringHelpIdPlayer() {
-        return stringHelpIdPlayer;
+    public String getStartExpoURL() {
+        return startExpoURL;
     }
 
-    public void setStringHelpIdPlayer(String stringHelpIdPlayer) {
-        this.stringHelpIdPlayer = stringHelpIdPlayer;
+    public void setStartExpoURL(String startExpoURL) {
+        this.startExpoURL = startExpoURL;
     }
 
-    public String getStringHelpLanguage() {
-        return stringHelpLanguage;
+    public String getQuestion() {
+        return question;
     }
 
-    public void setStringHelpLanguage(String stringHelpLanguage) {
-        this.stringHelpLanguage = stringHelpLanguage;
+    public void setQuestion(String question) {
+        this.question = question;
     }
 
-    public String getStringSelectCharacter() {
-        return stringSelectCharacter;
+    public String getHits() {
+        return hits;
     }
 
-    public void setStringSelectCharacter(String stringSelectCharacter) {
-        this.stringSelectCharacter = stringSelectCharacter;
+    public void setHits(String hits) {
+        this.hits = hits;
     }
 
-    public String getStringHelpCharacter() {
-        return stringHelpCharacter;
+    public String getQstnTXT1() {
+        return qstnTXT1;
     }
 
-    public void setStringHelpCharacter(String stringHelpCharacter) {
-        this.stringHelpCharacter = stringHelpCharacter;
+    public void setQstnTXT1(String qstnTXT1) {
+        this.qstnTXT1 = qstnTXT1;
     }
 
-    public String getStringSelectLevel() {
-        return stringSelectLevel;
+    public String getQstnTXT2() {
+        return qstnTXT2;
     }
 
-    public void setStringSelectLevel(String stringSelectLevel) {
-        this.stringSelectLevel = stringSelectLevel;
+    public void setQstnTXT2(String qstnTXT2) {
+        this.qstnTXT2 = qstnTXT2;
     }
 
-    public String getStringHelpLevel() {
-        return stringHelpLevel;
+    public String getAnswerOK() {
+        return answerOK;
     }
 
-    public void setStringHelpLevel(String stringHelpLevel) {
-        this.stringHelpLevel = stringHelpLevel;
+    public void setAnswerOK(String answerOK) {
+        this.answerOK = answerOK;
     }
 
-    public String getStringExit() {
-        return stringExit;
+    public String getAnswerKO() {
+        return answerKO;
     }
 
-    public void setStringExit(String stringExit) {
-        this.stringExit = stringExit;
+    public void setAnswerKO(String answerKO) {
+        this.answerKO = answerKO;
     }
 
-    public String getStringHelpExit() {
-        return stringHelpExit;
+    public String getNextButton() {
+        return nextButton;
     }
 
-    public void setStringHelpExit(String stringHelpExit) {
-        this.stringHelpExit = stringHelpExit;
+    public void setNextButton(String nextButton) {
+        this.nextButton = nextButton;
     }
 
-    public String getStringQuestion() {
-        return stringQuestion;
+    public String getSummCongrats() {
+        return summCongrats;
     }
 
-    public void setStringQuestion(String stringQuestion) {
-        this.stringQuestion = stringQuestion;
+    public void setSummCongrats(String summCongrats) {
+        this.summCongrats = summCongrats;
     }
 
-    public String getStringHelpQuestion() {
-        return stringHelpQuestion;
+    public String getSummGameText() {
+        return summGameText;
     }
 
-    public void setStringHelpQuestion(String stringHelpQuestion) {
-        this.stringHelpQuestion = stringHelpQuestion;
+    public void setSummGameText(String summGameText) {
+        this.summGameText = summGameText;
     }
 
-    public String getStringHits() {
-        return stringHits;
+    public String getSummComment() {
+        return summComment;
     }
 
-    public void setStringHits(String stringHits) {
-        this.stringHits = stringHits;
+    public void setSummComment(String summComment) {
+        this.summComment = summComment;
     }
 
-    public String getStringHelpHit() {
-        return stringHelpHit;
+    public String getSummBye() {
+        return summBye;
     }
 
-    public void setStringHelpHit(String stringHelpHit) {
-        this.stringHelpHit = stringHelpHit;
+    public void setSummBye(String summBye) {
+        this.summBye = summBye;
     }
 
-    public String getStringCorrectAnswer() {
-        return stringCorrectAnswer;
+    public String getSummURLText() {
+        return summURLText;
     }
 
-    public void setStringCorrectAnswer(String stringCorrectAnswer) {
-        this.stringCorrectAnswer = stringCorrectAnswer;
+    public void setSummURLText(String summURLText) {
+        this.summURLText = summURLText;
     }
 
-    public String getStringWrongAnswer() {
-        return stringWrongAnswer;
+    public String getSummURL() {
+        return summURL;
     }
 
-    public void setStringWrongAnswer(String stringWrongAnswer) {
-        this.stringWrongAnswer = stringWrongAnswer;
+    public void setSummURL(String summURL) {
+        this.summURL = summURL;
     }
-
-    public String getStringHelpAnswer() {
-        return stringHelpAnswer;
-    }
-
-    public void setStringHelpAnswer(String stringHelpAnswer) {
-        this.stringHelpAnswer = stringHelpAnswer;
-    }
-
-    public String getStringNext() {
-        return stringNext;
-    }
-
-    public void setStringNext(String stringNext) {
-        this.stringNext = stringNext;
-    }
-
-    public String getStringHelpNext() {
-        return stringHelpNext;
-    }
-
-    public void setStringHelpNext(String stringHelpNext) {
-        this.stringHelpNext = stringHelpNext;
-    }
-
-    public String getStringReviewCongratulations() {
-        return stringReviewCongratulations;
-    }
-
-    public void setStringReviewCongratulations(String stringReviewCongratulations) {
-        this.stringReviewCongratulations = stringReviewCongratulations;
-    }
-
-    public String getStringReviewId() {
-        return stringReviewId;
-    }
-
-    public void setStringReviewId(String stringReviewId) {
-        this.stringReviewId = stringReviewId;
-    }
-
-    public String getStringReviewProposal() {
-        return stringReviewProposal;
-    }
-
-    public void setStringReviewProposal(String stringReviewProposal) {
-        this.stringReviewProposal = stringReviewProposal;
-    }
-
-    public String getStringSalutations() {
-        return stringSalutations;
-    }
-
-    public void setStringSalutations(String stringSalutations) {
-        this.stringSalutations = stringSalutations;
-    }
-
-    public String getStringHelpFinalReview() {
-        return stringHelpFinalReview;
-    }
-
-    public void setStringHelpFinalReview(String stringHelpFinalReview) {
-        this.stringHelpFinalReview = stringHelpFinalReview;
-    }
-
-    public String getStringLinkFinalReview() {
-        return stringLinkFinalReview;
-    }
-
-    public void setStringLinkFinalReview(String stringLinkFinalReview) {
-        this.stringLinkFinalReview = stringLinkFinalReview;
-    }
-
 }

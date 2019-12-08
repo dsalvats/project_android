@@ -41,7 +41,8 @@ public class Exposicion {
     private List<Personaje> personajes;
     @SerializedName("Idiomas")
     private List<Idioma> idiomas;
-    //@SerializedName("ExposicionIdiomas")
+    @SerializedName("ExposicionIdiomas")
+    private List<IdiomaExposicionIdioma> idiomaExposicionIdiomas;
     private Map<Idioma, ExposicionIdioma> exposicionIdiomas;
     @SerializedName("Preguntas")
     private List<NivelPreguntas> nivelPreguntas;
@@ -56,6 +57,7 @@ public class Exposicion {
                       String descripcionExpo, String adminUser, String adminPassword,
                       int questionTimeOut, int answerTimeOut, int reviewTimeOut, String appImageSrc,
                       String reviewImageSrc, List<Personaje> personajes, List<Idioma> idiomas,
+                      List<IdiomaExposicionIdioma> idiomaExposicionIdiomas,
                       Map<Idioma, ExposicionIdioma> exposicionIdiomas,
                       List<NivelPreguntas> nivelPreguntas, List<Nivel> niveles) {
         this.id = id;
@@ -73,6 +75,7 @@ public class Exposicion {
         this.reviewImageSrc = reviewImageSrc;
         this.personajes = personajes;
         this.idiomas = idiomas;
+        this.idiomaExposicionIdiomas = idiomaExposicionIdiomas;
         this.exposicionIdiomas = exposicionIdiomas;
         this.nivelPreguntas = nivelPreguntas;
         this.preguntas = null;
@@ -207,6 +210,14 @@ public class Exposicion {
 
     public Map<Idioma, ExposicionIdioma> getExposicionIdiomas() {
         return exposicionIdiomas;
+    }
+
+    public List<IdiomaExposicionIdioma> getIdiomaExposicionIdiomas() {
+        return idiomaExposicionIdiomas;
+    }
+
+    public void setIdiomaExposicionIdiomas(List<IdiomaExposicionIdioma> idiomaExposicionIdiomas) {
+        this.idiomaExposicionIdiomas = idiomaExposicionIdiomas;
     }
 
     public void setExposicionIdiomas(Map<Idioma, ExposicionIdioma> exposicionIdiomas) {

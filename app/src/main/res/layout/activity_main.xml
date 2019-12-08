@@ -59,6 +59,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ImageViewDificultad" />
 
+        <!-- TODO: ESPERAR A IMPLEMENTACIÓN
         <Button
             android:id="@+id/ButtonEntrarId"
             android:layout_width="match_parent"
@@ -85,6 +86,7 @@
             android:textColor="#ffffff"
             android:textSize="30sp"
             app:layout_constraintBottom_toTopOf="@+id/EditTextEntrarId" />
+        -->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -98,7 +100,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/ConstraintLayoutLateralDerechoTop"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
@@ -106,8 +108,9 @@
             android:layout_marginBottom="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent="0.3">
+            app:layout_constraintWidth_percent="0.18">
 
+            <!-- TODO: RECOLOCAR
             <ImageView
                 android:id="@+id/ImageViewLogoGrupo"
                 android:layout_width="100dp"
@@ -117,26 +120,24 @@
                 android:src="@drawable/ic_launcher_background"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+            -->
 
             <ImageView
                 android:id="@+id/ImageViewLogoMuseo"
-                android:layout_width="100dp"
-                android:layout_height="220dp"
-                android:layout_marginTop="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
                 android:adjustViewBounds="true"
                 android:scaleType="fitXY"
-                android:src="@drawable/ic_launcher_background"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ImageViewLogoGrupo" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/ImageViewQRMuseo"
-                android:layout_width="100dp"
+                android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginTop="16dp"
                 android:adjustViewBounds="true"
                 android:scaleType="fitXY"
-                android:src="@drawable/ic_launcher_background"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/ImageViewLogoMuseo" />
 
@@ -158,7 +159,6 @@
                 android:id="@+id/TextViewLiteralExposicion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Exposición"
                 android:textAlignment="textEnd"
                 android:textColor="#ffffff"
                 android:textSize="20sp"
@@ -238,5 +238,24 @@
             app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--<androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ConstraintLayoutCoverFlow"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#80000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.8"
+        app:layout_constraintHeight_percent="0.8">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvAnimals"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,6 +13,9 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import com.xpomanager.R;
 import com.xpomanager.controllers.ControladorJuego;
 import com.xpomanager.controllers.ControladorPrincipal;
+import com.xpomanager.models.Exposicion;
+import com.xpomanager.models.ExposicionIdioma;
+import com.xpomanager.models.Idioma;
 import com.xpomanager.models.PreguntaIdioma;
 
 import java.util.ArrayList;
@@ -38,8 +41,12 @@ public class PreguntaActivity extends AppCompatActivity {
     TextView textViewRespuesta4;
     TextView textViewResumen;
     TextView textViewTiempo;
+    TextView textViewIntroduccionPregunta;
     CountDownTimer timer;
 
+    /************
+     * MÉTODOES *
+     ************/
     @SuppressLint("MissingSuperCall")
     @Override
     public void onBackPressed() {
@@ -61,6 +68,11 @@ public class PreguntaActivity extends AppCompatActivity {
         controladorJuego = controladorPrincipal.getControladorJuego();
         preguntaIdioma = controladorJuego.siguientePregunta();
 
+        declareElements();
+
+    }
+
+    private void declareElements() {
         // TextViews
         textViewEntrarId = findViewById(R.id.TextViewEntrarId);
         textViewEntrarId.setText(controladorJuego.getGameId());
@@ -75,11 +87,26 @@ public class PreguntaActivity extends AppCompatActivity {
         constraintLayoutRespuesta4 = findViewById(R.id.ConstraintLayoutLateralRespuesta4);
 
         // RESPUESTAS TextViews
+
+        textViewIntroduccionPregunta = findViewById(R.id.TextViewIntroduccionPregunta);
         textViewPregunta = findViewById(R.id.TextViewPregunta);
         textViewRespuesta1 = findViewById(R.id.TextViewRespuesta1);
         textViewRespuesta2 = findViewById(R.id.TextViewRespuesta2);
         textViewRespuesta3 = findViewById(R.id.TextViewRespuesta3);
         textViewRespuesta4 = findViewById(R.id.TextViewRespuesta4);
+
+        Idioma idioma = controladorJuego.getIdioma();
+        Exposicion exposicion = controladorJuego.getExposicion();
+        ExposicionIdioma exposicionIdioma = exposicion.getExposicionIdiomas().get(idioma);
+
+        if (exposicionIdioma != null) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(exposicionIdioma.getQstnTXT1()).append(" ");
+            sb.append(controladorJuego.getPersonaje().getNombre());
+            sb.append(exposicionIdioma.getQstnTXT2());
+
+            textViewIntroduccionPregunta.setText(sb.toString());
+        }
 
         textViewPregunta.setText(preguntaIdioma.getPregunta());
 
@@ -124,7 +151,7 @@ public class PreguntaActivity extends AppCompatActivity {
             }
         });
 
-        timer = new CountDownTimer(11000, 1000) //10 second Timer
+        timer = new CountDownTimer(11000000, 100000) //10 second Timer
         {
             public void onTick(long l)
             {
@@ -140,15 +167,12 @@ public class PreguntaActivity extends AppCompatActivity {
                 responder(findViewById(R.id.TextViewTimpo));
             }
         }.start();
-
     }
 
-    /************
-     * MÉTODOES *
-     ************/
     private void responder(View view) {
         responder(view, null);
     }
+
     private void responder(View view, TextView textView) {
 
         timer.cancel();

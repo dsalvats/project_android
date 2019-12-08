@@ -47,6 +47,7 @@
                 android:src="@drawable/ic_launcher_background"
                 app:layout_constraintTop_toBottomOf="@+id/ImageViewPersonaje" />
 
+            <!-- TODO: Cambiar a TextView y añadir background -->
             <ImageView
                 android:id="@+id/ImageViewDificultad"
                 android:layout_width="match_parent"
@@ -106,7 +107,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:layout_marginBottom="12dp"
-                android:text="Venerado Master Yoda, la pregunta es..."
                 android:textAlignment="center"
                 android:textColor="#ffffff"
                 android:textSize="24sp"
