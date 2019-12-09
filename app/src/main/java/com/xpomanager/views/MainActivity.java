@@ -2,6 +2,8 @@ package com.xpomanager.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -14,12 +16,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.xpomanager.R;
+import com.xpomanager.adapters.AdaptadorIdiomas;
 import com.xpomanager.controllers.ControladorPrincipal;
 import com.xpomanager.models.Exposicion;
 import com.xpomanager.models.ExposicionIdioma;
 import com.xpomanager.models.Idioma;
 import com.xpomanager.models.Nivel;
 import com.xpomanager.models.Personaje;
+
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -48,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
     //private ImageView imageViewLogoGrupo;
     private ImageView imageViewLogoMuseo;
     private ImageView imageViewQRMuseo;
+    private RecyclerView recView;
 
     /***********
      * MÉTODOS *
@@ -74,6 +80,16 @@ public class MainActivity extends AppCompatActivity {
         fillElements();
         setImages();
 
+        List<Idioma> idiomas = controladorPrincipal.getExposicion().getIdiomas();
+        recView = (RecyclerView)findViewById(R.id.RecView);
+        recView.setHasFixedSize(true);
+
+        final AdaptadorIdiomas adaptadorIdiomas = new AdaptadorIdiomas(idiomas);
+
+        recView.setAdapter(adaptadorIdiomas);
+
+        recView.setLayoutManager(
+                new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
     }
 
     private void fillControladorPrincipal() {
