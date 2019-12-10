@@ -8,6 +8,40 @@
     android:background="#666666"
     tools:context=".views.MainActivity">
 
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ConstraintLayoutCentral"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/TextViewLiteralJugarAhora"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="JUGAR AHORA"
+            android:textAlignment="textEnd"
+            android:textColor="#CC3693"
+            android:textSize="56sp"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <ImageView
+            android:id="@+id/ImageViewJugarAhora"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_launcher_background"
+            app:layout_constraintBottom_toTopOf="@+id/TextViewLiteralJugarAhora"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/ConstraintLayoutLateralIzquierdo"
         android:layout_width="0dp"
@@ -17,16 +51,50 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintWidth_percent="0.12">
+        app:layout_constraintWidth_percent="0.8">
 
-        <ImageView
-            android:id="@+id/ImageViewPersonaje"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ConstraintLayoutPersonaje"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:adjustViewBounds="true"
-            android:scaleType="fitXY"
-            android:src="@drawable/ic_launcher_background"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageView
+                android:id="@+id/ImageViewPersonaje"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_launcher_background"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintWidth_percent="0.2"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/ConstraintLayoutCoverFlow"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="#80000000"
+                android:padding="12dp"
+                app:layout_constraintBottom_toBottomOf="@+id/ImageViewPersonaje"
+                app:layout_constraintStart_toEndOf="@+id/ImageViewPersonaje"
+                app:layout_constraintTop_toTopOf="@+id/ImageViewPersonaje"
+                app:layout_constraintWidth_percent="0.5">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/RecView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ImageView
             android:id="@+id/ImageViewBandera"
@@ -36,7 +104,7 @@
             android:adjustViewBounds="true"
             android:scaleType="fitXY"
             android:src="@drawable/ic_launcher_background"
-            app:layout_constraintTop_toBottomOf="@+id/ImageViewPersonaje" />
+            app:layout_constraintTop_toBottomOf="@+id/ConstraintLayoutPersonaje" />
 
         <ImageView
             android:id="@+id/ImageViewDificultad"
@@ -206,57 +274,5 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/ConstraintLayoutCentral"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/TextViewLiteralJugarAhora"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="JUGAR AHORA"
-            android:textAlignment="textEnd"
-            android:textColor="#CC3693"
-            android:textSize="56sp"
-            app:layout_constraintBottom_toBottomOf="parent" />
-
-        <ImageView
-            android:id="@+id/ImageViewJugarAhora"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-            android:adjustViewBounds="true"
-            android:scaleType="fitXY"
-            android:src="@drawable/ic_launcher_background"
-            app:layout_constraintBottom_toTopOf="@+id/TextViewLiteralJugarAhora"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <LinearLayout
-        android:id="@+id/ConstraintLayoutCoverFlow"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="#FF000000"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="0.8"
-        app:layout_constraintHeight_percent="0.8">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/RecView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#FF0000FF"/>
-
-    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

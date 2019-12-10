@@ -16,7 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.xpomanager.R;
-import com.xpomanager.adapters.AdaptadorIdiomas;
+import com.xpomanager.adapters.AdaptadorPersonajes;
 import com.xpomanager.controllers.ControladorPrincipal;
 import com.xpomanager.models.Exposicion;
 import com.xpomanager.models.ExposicionIdioma;
@@ -80,11 +80,10 @@ public class MainActivity extends AppCompatActivity {
         fillElements();
         setImages();
 
-        List<Idioma> idiomas = controladorPrincipal.getExposicion().getIdiomas();
+        List<Personaje> personajes = controladorPrincipal.getExposicion().getPersonajes();
         recView = (RecyclerView)findViewById(R.id.RecView);
-        recView.setHasFixedSize(true);
 
-        final AdaptadorIdiomas adaptadorIdiomas = new AdaptadorIdiomas(idiomas);
+        final AdaptadorPersonajes adaptadorIdiomas = new AdaptadorPersonajes(personajes, controladorPrincipal);
 
         recView.setAdapter(adaptadorIdiomas);
 
