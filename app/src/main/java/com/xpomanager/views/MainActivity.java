@@ -16,7 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.xpomanager.R;
-import com.xpomanager.adapters.AdaptadorPersonajes;
+import com.xpomanager.adapters.AdaptadorObjects;
 import com.xpomanager.controllers.ControladorPrincipal;
 import com.xpomanager.models.Exposicion;
 import com.xpomanager.models.ExposicionIdioma;
@@ -53,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
     //private ImageView imageViewLogoGrupo;
     private ImageView imageViewLogoMuseo;
     private ImageView imageViewQRMuseo;
-    private RecyclerView recView;
 
     /***********
      * MÉTODOS *
@@ -79,16 +78,29 @@ public class MainActivity extends AppCompatActivity {
         setElementsListeners();
         fillElements();
         setImages();
+    }
 
-        List<Personaje> personajes = controladorPrincipal.getExposicion().getPersonajes();
-        recView = (RecyclerView)findViewById(R.id.RecView);
+    private void setListToRecyclerView(List<?> objects) {
+        RecyclerView recyclerView = null;
 
-        final AdaptadorPersonajes adaptadorIdiomas = new AdaptadorPersonajes(personajes, controladorPrincipal);
+        if (!objects.isEmpty()) {
+            if (objects.get(0) instanceof Personaje) {
+                recyclerView = findViewById(R.id.RecyclerViewPersonaje);
+            } else if (objects.get(0) instanceof Idioma) {
+                recyclerView = findViewById(R.id.RecyclerViewIdioma);
+            }
+        }
 
-        recView.setAdapter(adaptadorIdiomas);
+        if (recyclerView != null) {
+            final AdaptadorObjects adaptadorObjects = new AdaptadorObjects(objects, controladorPrincipal);
 
-        recView.setLayoutManager(
-                new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
+            recyclerView.setAdapter(adaptadorObjects);
+
+            recyclerView.setLayoutManager(
+                    new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
+        }
+
+
     }
 
     private void fillControladorPrincipal() {
@@ -139,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
 
         // ImageViews
         imageViewPersonaje = findViewById(R.id.ImageViewPersonaje);
-        imageViewIdioma = findViewById(R.id.ImageViewBandera);
+        imageViewIdioma = findViewById(R.id.ImageViewIdioma);
         imageViewNivel = findViewById(R.id.ImageViewDificultad);
         imageViewJugarAhora = findViewById(R.id.ImageViewJugarAhora);
         //imageViewLogoGrupo = findViewById(R.id.ImageViewLogoGrupo);
@@ -208,7 +220,15 @@ public class MainActivity extends AppCompatActivity {
         imageViewNivel.setTag(nivel);
     }
 
-    private void fillElements() {
+    private void fillRecyclerViews() {
+        List<Personaje> personajes = controladorPrincipal.getExposicion().getPersonajes();
+        List<Idioma> idiomas = controladorPrincipal.getExposicion().getIdiomas();
+
+        setListToRecyclerView(personajes);
+        setListToRecyclerView(idiomas);
+    }
+
+    private void fillExpoInfo() {
         Exposicion exposicion = controladorPrincipal.getExposicion();
         Idioma idioma = getSelectedIdioma();
         ExposicionIdioma exposicionIdioma = exposicion.getExposicionIdiomas().get(idioma);
@@ -237,8 +257,13 @@ public class MainActivity extends AppCompatActivity {
             }
 
             textViewDescripcion2.setText(sb.toString());
+            textViewLinkExposicion.setText(exposicionIdioma.getStartExpoURL());
         }
 
-        textViewLinkExposicion.setText(exposicionIdioma.getStartExpoURL());
+    }
+
+    private void fillElements() {
+        fillExpoInfo();
+        fillRecyclerViews();
     }
 }
