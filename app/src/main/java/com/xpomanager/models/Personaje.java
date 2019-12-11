@@ -13,7 +13,7 @@ public class Personaje {
     private boolean activo;
     @SerializedName("Nombre")
     private String nombre;
-    @SerializedName("Imagen")
+    @SerializedName("Image")
     private String imagenSrc;
 
     /*****************

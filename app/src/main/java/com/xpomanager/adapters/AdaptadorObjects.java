@@ -1,9 +1,14 @@
 package com.xpomanager.adapters;
 
+import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.DrawableRes;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.xpomanager.R;
@@ -20,13 +25,15 @@ public class AdaptadorObjects extends RecyclerView.Adapter<AdaptadorObjects.Obje
      *************/
     private List<?> datos;
     private ControladorPrincipal controladorPrincipal;
+    private ImageView linkedImageView;
 
     /*****************
      * CONSTRUCTORES *
      *****************/
-    public AdaptadorObjects(List<?> datos, ControladorPrincipal controladorPrincipal) {
+    public AdaptadorObjects(List<?> datos, ControladorPrincipal controladorPrincipal, ImageView linkedImageView) {
         this.datos = datos;
         this.controladorPrincipal = controladorPrincipal;
+        this.linkedImageView = linkedImageView;
     }
 
     @Override
@@ -34,7 +41,7 @@ public class AdaptadorObjects extends RecyclerView.Adapter<AdaptadorObjects.Obje
         View itemView = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.recyclerview_item, viewGroup, false);
 
-        return new ObjectsViewHolder(itemView, controladorPrincipal);
+        return new ObjectsViewHolder(itemView, controladorPrincipal, linkedImageView);
 
     }
 
@@ -52,24 +59,41 @@ public class AdaptadorObjects extends RecyclerView.Adapter<AdaptadorObjects.Obje
 
     public static class ObjectsViewHolder extends RecyclerView.ViewHolder {
 
-        private ImageView imageViewRecyclerView;
         private ControladorPrincipal controladorPrincipal;
+        private ImageView imageViewRecyclerView;
+        private ImageView linkedImageView;
 
-        private ObjectsViewHolder(View itemView, ControladorPrincipal controladorPrincipal) {
+        private ObjectsViewHolder(View itemView, ControladorPrincipal controladorPrincipal, ImageView linkedImageView) {
             super(itemView);
 
             this.controladorPrincipal = controladorPrincipal;
             this.imageViewRecyclerView = itemView.findViewById(R.id.ImageViewRecyclerView);
+            this.linkedImageView = linkedImageView;
 
         }
 
         private void bindObject(Object object) {
+            Bitmap bitmap = null;
+            Boolean selected = false;
 
             if (object instanceof Personaje) {
-                imageViewRecyclerView.setImageBitmap(controladorPrincipal.getPersonajeImageBitmap((Personaje) object));
+                bitmap = controladorPrincipal.getPersonajeImageBitmap((Personaje) object);
             } else if (object instanceof Idioma) {
-                imageViewRecyclerView.setImageBitmap(controladorPrincipal.getIdiomaImageBitmap((Idioma) object));
+                bitmap = controladorPrincipal.getIdiomaImageBitmap((Idioma) object);
             }
+
+            Object linkedObject = linkedImageView.getTag();
+
+            if (linkedObject.equals(object)) {
+                imageViewRecyclerView.setPadding(12,12,12,12);
+                imageViewRecyclerView.setBackgroundColor(Color.parseColor("#80ff0000"));
+            }
+
+            if (bitmap != null) {
+                imageViewRecyclerView.setImageBitmap(bitmap);
+            }
+
+            imageViewRecyclerView.setTag(object);
 
         }
 

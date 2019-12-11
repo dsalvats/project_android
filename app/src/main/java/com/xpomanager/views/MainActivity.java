@@ -1,19 +1,31 @@
 package com.xpomanager.views;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.VideoView;
 
 import com.xpomanager.R;
 import com.xpomanager.adapters.AdaptadorObjects;
@@ -24,6 +36,7 @@ import com.xpomanager.models.Idioma;
 import com.xpomanager.models.Nivel;
 import com.xpomanager.models.Personaje;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -39,13 +52,24 @@ public class MainActivity extends AppCompatActivity {
     /*************
      * ATRIBUTOS *
      *************/
+    // Controladores
     private ControladorPrincipal controladorPrincipal;
+
+    // Constraints
     private ConstraintLayout constraintLayoutMain;
+    private ConstraintLayout constraintLayoutRecyclerViewPersonaje;
+    private ConstraintLayout constraintLayoutRecyclerViewIdioma;
+    private ConstraintLayout constraintLayoutRecyclerViewLayoutNivel;
+
+    // TextViews
     private TextView textViewLiteralExposicion;
+    private TextView textViewLiteralJugarAhora;
     private TextView textViewNombreExposicion;
     private TextView textViewDescripcion;
     private TextView textViewDescripcion2;
     private TextView textViewLinkExposicion;
+
+    // ImageViews
     private ImageView imageViewPersonaje;
     private ImageView imageViewIdioma;
     private ImageView imageViewNivel;
@@ -53,6 +77,9 @@ public class MainActivity extends AppCompatActivity {
     //private ImageView imageViewLogoGrupo;
     private ImageView imageViewLogoMuseo;
     private ImageView imageViewQRMuseo;
+
+    // Other
+    private VideoView videoViewMain;
 
     /***********
      * MÉTODOS *
@@ -64,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
 
         if (getSupportActionBar() != null) {
@@ -72,15 +100,56 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
+
+        if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(MainActivity.this, "ya tienes permisos", Toast.LENGTH_LONG);
+        } else {
+            requestStoragePermission();
+        }
+
         fillControladorPrincipal();
         declareElements();
         setDefaultSettings();
-        setElementsListeners();
         fillElements();
-        setImages();
+        setElementsListeners();
     }
 
-    private void setListToRecyclerView(List<?> objects) {
+    private void requestStoragePermission() {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
+            new AlertDialog.Builder(this)
+                    .setTitle("Permission needed")
+                    .setMessage("This permission is needed because of this and that")
+                    .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            ActivityCompat.requestPermissions(MainActivity.this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+                        }
+                    })
+                    .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    })
+                    .create()
+                    .show();
+        } else {
+            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+        }
+
+    }
+
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == 1) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "Permission GRANTED", Toast.LENGTH_SHORT);
+            } else {
+                Toast.makeText(this, "Permission DENIED", Toast.LENGTH_SHORT);
+            }
+        }
+    }
+
+    private void setListToRecyclerView(List<?> objects, ImageView linkedImageView) {
         RecyclerView recyclerView = null;
 
         if (!objects.isEmpty()) {
@@ -92,12 +161,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (recyclerView != null) {
-            final AdaptadorObjects adaptadorObjects = new AdaptadorObjects(objects, controladorPrincipal);
+            final AdaptadorObjects adaptadorObjects = new AdaptadorObjects(objects, controladorPrincipal, linkedImageView);
 
             recyclerView.setAdapter(adaptadorObjects);
 
             recyclerView.setLayoutManager(
-                    new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
+                    new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         }
 
 
@@ -105,25 +174,94 @@ public class MainActivity extends AppCompatActivity {
 
     private void fillControladorPrincipal() {
         controladorPrincipal = (ControladorPrincipal) super.getApplication();
+        controladorPrincipal.loadInfo();
     }
 
     private void setElementsListeners() {
-        imageViewJugarAhora.setOnClickListener(new View.OnClickListener() {
+        setConstraintLayoutMainListeners();
+        setImageViewJugarAhoraListeners();
+        setImageViewPersonajeListeners();
+        setImageViewIdiomaListeners();
+    }
+
+    private void setConstraintLayoutMainListeners() {
+        constraintLayoutMain.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Personaje personaje = getSelectedPersonaje();
-                Idioma idioma = getSelectedIdioma();
-                Nivel nivel = getSelectedNivel();
+            public void onClick(View v) {
+                setConstraintLayoutRecyclerViewsInvisible();
+            }
+        });
+    }
 
-                controladorPrincipal.iniciarJuego(personaje, idioma, nivel);
+    private void setConstraintLayoutRecyclerViewsInvisible() {
+        constraintLayoutRecyclerViewPersonaje.setVisibility(View.INVISIBLE);
+        constraintLayoutRecyclerViewIdioma.setVisibility(View.INVISIBLE);
+        // constraintLayoutRecyclerViewLayoutNivel.setVisibility(View.INVISIBLE);
+    }
 
-                if (controladorPrincipal.getControladorJuego().hasNextPregunta()) {
-                    Intent intent = new Intent(view.getContext(), PreguntaActivity.class);
-                    startActivityForResult(intent, 0);
-                    finish();
+    private void setImageViewPersonajeListeners() {
+        imageViewPersonaje.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (constraintLayoutRecyclerViewPersonaje.getVisibility() == View.INVISIBLE) {
+                    setConstraintLayoutRecyclerViewsInvisible();
+                    constraintLayoutRecyclerViewPersonaje.setVisibility(View.VISIBLE);
+                } else {
+                    constraintLayoutRecyclerViewPersonaje.setVisibility(View.INVISIBLE);
+                    setConstraintLayoutRecyclerViewsInvisible();
                 }
             }
         });
+    }
+
+    private void setImageViewIdiomaListeners() {
+        imageViewIdioma.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (constraintLayoutRecyclerViewIdioma.getVisibility() == View.INVISIBLE) {
+                    setConstraintLayoutRecyclerViewsInvisible();
+                    constraintLayoutRecyclerViewIdioma.setVisibility(View.VISIBLE);
+                } else {
+                    constraintLayoutRecyclerViewIdioma.setVisibility(View.INVISIBLE);
+                    setConstraintLayoutRecyclerViewsInvisible();
+                }
+            }
+        });
+    }
+
+    private void setImageViewJugarAhoraListeners() {
+        imageViewJugarAhora.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (isAnyConstraintLayoutOpened()) {
+                    setConstraintLayoutRecyclerViewsInvisible();
+                } else {
+                    Personaje personaje = getSelectedPersonaje();
+                    Idioma idioma = getSelectedIdioma();
+                    Nivel nivel = getSelectedNivel();
+
+                    controladorPrincipal.iniciarJuego(personaje, idioma, nivel);
+
+                    if (controladorPrincipal.getControladorJuego().hasNextPregunta()) {
+                        Intent intent = new Intent(view.getContext(), PreguntaActivity.class);
+                        startActivityForResult(intent, 0);
+                        finish();
+                    }
+                }
+            }
+        });
+    }
+
+    private Boolean isAnyConstraintLayoutOpened() {
+        boolean result = false;
+
+        if (constraintLayoutRecyclerViewPersonaje.getVisibility() == View.VISIBLE ||
+                constraintLayoutRecyclerViewIdioma.getVisibility() == View.VISIBLE /*||
+            constraintLayoutRecyclerViewLayoutNivel.getVisibility() == View.VISIBLE*/) {
+            result = true;
+        }
+
+        return result;
     }
 
     private Personaje getSelectedPersonaje() {
@@ -141,9 +279,13 @@ public class MainActivity extends AppCompatActivity {
     private void declareElements() {
         // ConstraintLayouts
         constraintLayoutMain = findViewById(R.id.ConstraintLayoutMain);
+        constraintLayoutRecyclerViewPersonaje = findViewById(R.id.ConstraintLayoutRecyclerViewPersonaje);
+        constraintLayoutRecyclerViewIdioma = findViewById(R.id.ConstraintLayoutRecyclerViewIdioma);
+        // constraintLayoutNivel = findViewById(R.id.ConstraintLayoutNivel);
 
         // TextViews
         textViewLiteralExposicion = findViewById(R.id.TextViewLiteralExposicion);
+        textViewLiteralJugarAhora = findViewById(R.id.TextViewLiteralJugarAhora);
         textViewNombreExposicion = findViewById(R.id.TextViewNombreExposicion);
         textViewDescripcion = findViewById(R.id.TextViewDescripcion);
         textViewDescripcion2 = findViewById(R.id.TextViewDescripcion2);
@@ -154,9 +296,13 @@ public class MainActivity extends AppCompatActivity {
         imageViewIdioma = findViewById(R.id.ImageViewIdioma);
         imageViewNivel = findViewById(R.id.ImageViewDificultad);
         imageViewJugarAhora = findViewById(R.id.ImageViewJugarAhora);
-        //imageViewLogoGrupo = findViewById(R.id.ImageViewLogoGrupo);
+        // imageViewLogoGrupo = findViewById(R.id.ImageViewLogoGrupo);
         imageViewLogoMuseo = findViewById(R.id.ImageViewLogoMuseo);
         imageViewQRMuseo = findViewById(R.id.ImageViewQRMuseo);
+
+        // Other
+        videoViewMain = findViewById(R.id.VideoViewMain);
+
     }
 
     private void setDefaultSettings() {
@@ -175,6 +321,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void setPlayNowImage() {
         imageViewJugarAhora.setImageBitmap(controladorPrincipal.getJugarAhoraBitmap());
+        Animation pulse = AnimationUtils.loadAnimation(this, R.anim.pulse);
+        pulse.setRepeatCount(Animation.INFINITE);
+        pulse.setRepeatMode(Animation.REVERSE);
+        imageViewJugarAhora.startAnimation(pulse);
     }
 
     private void setExpoURLQR() {
@@ -182,8 +332,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setAppImage() {
-        Drawable drawable = new BitmapDrawable(this.getResources(), controladorPrincipal.getAppImageBitmap());
-        constraintLayoutMain.setBackground(drawable);
+        if (controladorPrincipal.isAppImageVideo()) {
+            controladorPrincipal.setAppVideo(videoViewMain);
+        } else {
+            Drawable drawable = new BitmapDrawable(this.getResources(), controladorPrincipal.getAppImageBitmap());
+            videoViewMain.setBackground(drawable);
+        }
     }
 
     /*private void setGroupLogo() {
@@ -224,8 +378,8 @@ public class MainActivity extends AppCompatActivity {
         List<Personaje> personajes = controladorPrincipal.getExposicion().getPersonajes();
         List<Idioma> idiomas = controladorPrincipal.getExposicion().getIdiomas();
 
-        setListToRecyclerView(personajes);
-        setListToRecyclerView(idiomas);
+        setListToRecyclerView(personajes, imageViewPersonaje);
+        setListToRecyclerView(idiomas, imageViewIdioma);
     }
 
     private void fillExpoInfo() {
@@ -258,6 +412,7 @@ public class MainActivity extends AppCompatActivity {
 
             textViewDescripcion2.setText(sb.toString());
             textViewLinkExposicion.setText(exposicionIdioma.getStartExpoURL());
+            textViewLiteralJugarAhora.setText(exposicionIdioma.getStartPlayButton());
         }
 
     }
@@ -265,5 +420,6 @@ public class MainActivity extends AppCompatActivity {
     private void fillElements() {
         fillExpoInfo();
         fillRecyclerViews();
+        setImages();
     }
 }

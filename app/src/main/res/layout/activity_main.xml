@@ -5,10 +5,12 @@
     android:id="@+id/ConstraintLayoutMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#666666"
     tools:context=".views.MainActivity">
 
-
+    <VideoView
+        android:id="@+id/VideoViewMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/ConstraintLayoutCentral"
@@ -23,10 +25,10 @@
             android:id="@+id/TextViewLiteralJugarAhora"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="JUGAR AHORA"
             android:textAlignment="textEnd"
             android:textColor="#CC3693"
             android:textSize="56sp"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent" />
 
         <ImageView
@@ -78,6 +80,7 @@
                 android:layout_height="0dp"
                 android:background="#80000000"
                 android:padding="12dp"
+                android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="@+id/ImageViewPersonaje"
                 app:layout_constraintStart_toEndOf="@+id/ImageViewPersonaje"
                 app:layout_constraintTop_toTopOf="@+id/ImageViewPersonaje"
@@ -121,6 +124,7 @@
                 android:layout_height="0dp"
                 android:background="#80000000"
                 android:padding="12dp"
+                android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="@+id/ImageViewIdioma"
                 app:layout_constraintStart_toEndOf="@+id/ImageViewIdioma"
                 app:layout_constraintTop_toTopOf="@+id/ImageViewIdioma"
@@ -156,6 +160,7 @@
             android:layout_marginTop="16dp"
             android:adjustViewBounds="true"
             android:scaleType="fitXY"
+            android:visibility="invisible"
             android:src="@drawable/ic_launcher_background"
             app:layout_constraintTop_toBottomOf="@+id/ConstraintLayoutIdioma" />
 
@@ -165,6 +170,7 @@
             android:layout_height="40dp"
             android:layout_marginTop="16dp"
             android:scaleType="fitXY"
+            android:visibility="invisible"
             android:src="@drawable/ic_launcher_background"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -249,6 +255,7 @@
                 android:layout_marginTop="16dp"
                 android:adjustViewBounds="true"
                 android:scaleType="fitXY"
+                android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/ImageViewLogoMuseo" />
 

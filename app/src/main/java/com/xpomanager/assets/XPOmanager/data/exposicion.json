@@ -1,0 +1,763 @@
+{ 
+  "Id":0,
+  "Nombre":"Exposicion 1",
+  "Activo":false,
+  "FechaInicio":"0001-01-01T00:00:00",
+  "FechaFin":"0001-01-01T00:00:00",
+  "DescripcionExpo":"Descripción 1",
+  "AdminUser":null,
+  "AdminPassword":null,
+  "QuestionsXLvl":0,
+  "QuestionTimeOut":0,
+  "AnswerTimeOut":0,
+  "ReviewTimeOut":0,
+  "AppImage":"spaceship.webm",
+  "ReviewImage":null,
+  "CantidadIdiomas":0,
+  "CantidadNiveles":0,
+  "CantidadPersonajes":0,
+  "Personaje":[ 
+    { 
+      "Id":1,
+      "ExpoId":0,
+      "Activo":false,
+      "Nombre":"Chewbacca",
+      "Image":"charE0I1.jpg"
+    },
+    { 
+      "Id":2,
+      "ExpoId":0,
+      "Activo":false,
+      "Nombre":"Maestro Yoda",
+      "Image":"charE0I2.jpg"
+    },
+    { 
+      "Id":3,
+      "ExpoId":0,
+      "Activo":false,
+      "Nombre":"Darth Sidious",
+      "Image":"charE0I3.jpg"
+    },
+    { 
+      "Id":4,
+      "ExpoId":0,
+      "Activo":false,
+      "Nombre":"Soldier",
+      "Image":"charE0I4.jpg"
+    }
+  ],
+  "Idiomas":[ 
+    { 
+      "Id":1,
+      "Activo":false,
+      "Nombre":"Castellano",
+      "Image":"flag2.jpg"
+    },
+    { 
+      "Id":2,
+      "Activo":false,
+      "Nombre":"Català",
+      "Image":"flag1.jpg"
+    },
+    { 
+      "Id":3,
+      "Activo":false,
+      "Nombre":"English",
+      "Image":"flag3.jpg"
+    }
+  ],
+  "ExposicionIdiomas":[ 
+    { 
+      "Key":{ 
+        "Id":0,
+        "Activo":false,
+        "Nombre":"Castellano",
+        "Image":null
+      },
+      "Value":{ 
+        "LangId":1,
+        "StartEnterId":"Introdïu Id",
+        "StartPlayButton":"JUGA ARA",
+        "StartExposition":"Exposició",
+        "StartExpoTitle":"\"Una MIRada a l'espai\"",
+        "StartExpoIntro":"Cinema i astronàutica",
+        "StartExpoDateFrom":"A partir del",
+        "StartExpoDateTo":"hasta el",
+        "StartExpoURL":"https://mnactec.cat/ca/exposicio-detall/una-mirada-a-l-espai",
+        "Question":"Pregunta",
+        "Hits":"Encerts",
+        "QstnTXT1":"Venerat",
+        "QstnTXT2":", la pregunta és...",
+        "AnswerOK":"Resposta CORRECTA !!!",
+        "AnswerKO":"Resposta Incorrecta !",
+        "NextButton":"Pròxim",
+        "SummCongrats":"FELICITACIONS !!! Ets al TOP 100",
+        "SummGameText":"Si voleu provar de nou classificar utilitzeu l'ID",
+        "SummComment":"Escanegeu el codi d’IQ i visiteu el nostre lloc web per obtenir la teva recompensa.",
+        "SummBye":"Que la força t'acompanyi !",
+        "SummURLText":"lloc web de mNACTEC",
+        "SummURL":"https://mnactec.cat/ca/inici"
+      }
+    },
+    { 
+      "Key":{ 
+        "Id":0,
+        "Activo":false,
+        "Nombre":"Català",
+        "Image":null
+      },
+      "Value":{ 
+        "LangId":2,
+        "StartEnterId":"Entrar Id",
+        "StartPlayButton":"JUGAR AHORA",
+        "StartExposition":"Exposición",
+        "StartExpoTitle":"\"Una MIRada al espacio\"",
+        "StartExpoIntro":"Cine y astronáutica",
+        "StartExpoDateFrom":"A partir del ",
+        "StartExpoDateTo":"hasta el",
+        "StartExpoURL":"https://mnactec.cat/es/exposicion-detalle/una-mirada-al-espacio",
+        "Question":"Pregunta",
+        "Hits":"Aciertos",
+        "QstnTXT1":"Venerado",
+        "QstnTXT2":", la pregunta es...",
+        "AnswerOK":"Respuesta CORRECTA !!!",
+        "AnswerKO":"Respuesta Incorrecta !",
+        "NextButton":"Siguiente",
+        "SummCongrats":"FELICIDADES !!! Estás en el TOP 100",
+        "SummGameText":"Si quieres volver a intentarlo, utiliza el ID us4qr.",
+        "SummComment":"Escanee el código IQ y visite nuestro sitio web para obtener tu recompensa.",
+        "SummBye":"Que la fuerza esté con usted !",
+        "SummURLText":"Sitio web de mNACTEC",
+        "SummURL":"https://mnactec.cat/es/inicio"
+      }
+    },
+    { 
+      "Key":{ 
+        "Id":0,
+        "Activo":false,
+        "Nombre":"English",
+        "Image":null
+      },
+      "Value":{ 
+        "LangId":3,
+        "StartEnterId":"Enter Id",
+        "StartPlayButton":"PLAY NOW",
+        "StartExposition":"Exhibition",
+        "StartExpoTitle":"\"A look at space\"",
+        "StartExpoIntro":"Cinema and astronautics",
+        "StartExpoDateFrom":"From ",
+        "StartExpoDateTo":"to",
+        "StartExpoURL":"https://mnactec.cat/en/exhibition-detail/a-look-at-space",
+        "Question":"Question",
+        "Hits":"Hits",
+        "QstnTXT1":"Dear",
+        "QstnTXT2":", the question is...",
+        "AnswerOK":"CORRECT Answer !!!",
+        "AnswerKO":"Incorrect Answer !",
+        "NextButton":"Next",
+        "SummCongrats":"CONGRATULATIONS !!! You are in the TOP 100",
+        "SummGameText":"If you want to try Again plase use the ID us4qr.",
+        "SummComment":"Scan the IQ code and visit our website to get your reward.",
+        "SummBye":"May the force be with you !",
+        "SummURLText":"mNACTEC website",
+        "SummURL":"https://mnactec.cat/en/home"
+      }
+    }
+  ],
+  "Preguntas":[ 
+    { 
+      "Key":{ 
+        "Id":0,
+        "ExpoId":0,
+        "Activo":false,
+        "Nombre":"Fácil",
+        "Literales":null
+      },
+      "Value":[ 
+        { 
+          "Id":0,
+          "IsRespTexto":true,
+          "ImagenPregunta":null,
+          "ImagenRespuestaCorrecta":null,
+          "ImagenRespuestaIncorrecta1":null,
+          "ImagenRespuestaIncorrecta2":null,
+          "ImagenRespuestaIncorrecta3":null,
+          "PreguntaIdiomas":[ 
+            { 
+              "Key":{ 
+                "Id":0,
+                "Activo":false,
+                "Nombre":"Castellano",
+                "Image":null
+              },
+              "Value":{ 
+                "Id":1,
+                "Pregunta":"Esta Es la Pregunta 1 Nivel facil",
+                "RespuestaCorrecta":"Esta Es la Respuesta correcta",
+                "RespuestaIncorrecta1":"Esta es la respuesta incorrecta 1",
+                "RespuestaIncorrecta2":"Esta es la respuesta incorrecta 2",
+                "RespuestaIncorrecta3":"Esta es la respuesta incorrecta 3",
+                "StringRespuestaCorrecta":null,
+                "StringLinkRespuestaCorrecta":null,
+                "LinkRespuestaCorrecta":null
+              }
+            },
+            { 
+              "Key":{ 
+                "Id":0,
+                "Activo":false,
+                "Nombre":"Català",
+                "Image":null
+              },
+              "Value":{ 
+                "Id":2,
+                "Pregunta":"Aquesta es la pregunta 1 Nivell facil",
+                "RespuestaCorrecta":"Aquesta es la resposta correcta",
+                "RespuestaIncorrecta1":"Aquesta es la resposta incorrecta 1",
+                "RespuestaIncorrecta2":"Aquesta es la resposta incorrecta 2",
+                "RespuestaIncorrecta3":"Aquesta es la resposta incorrecta 3",
+                "StringRespuestaCorrecta":null,
+                "StringLinkRespuestaCorrecta":null,
+                "LinkRespuestaCorrecta":null
+              }
+            },
+            { 
+              "Key":{ 
+                "Id":0,
+                "Activo":false,
+                "Nombre":"English",
+                "Image":null
+              },
+              "Value":{ 
+                "Id":3,
+                "Pregunta":"Thats the first question easy level",
+                "RespuestaCorrecta":"Thats the correct answer",
+                "RespuestaIncorrecta1":"Thats the incorrect answer 1",
+                "RespuestaIncorrecta2":"Thats the incorrect answer 2",
+                "RespuestaIncorrecta3":"Thats the incorrect answer 3",
+                "StringRespuestaCorrecta":null,
+                "StringLinkRespuestaCorrecta":null,
+                "LinkRespuestaCorrecta":null
+              }
+            }
+          ]
+        },
+        { 
+          "Id":0,
+          "IsRespTexto":true,
+          "ImagenPregunta":null,
+          "ImagenRespuestaCorrecta":null,
+          "ImagenRespuestaIncorrecta1":null,
+          "ImagenRespuestaIncorrecta2":null,
+          "ImagenRespuestaIncorrecta3":null,
+          "PreguntaIdiomas":[ 
+            { 
+              "Key":{ 
+                "Id":0,
+                "Activo":false,
+                "Nombre":"Castellano",
+                "Image":null
+              },
+              "Value":{ 
+                "Id":4,
+                "Pregunta":"Esta Es la Pregunta 2 Nivel facil",
+                "RespuestaCorrecta":"Esta Es la Respuesta correcta",
+                "RespuestaIncorrecta1":"Esta es la respuesta incorrecta 1",
+                "RespuestaIncorrecta2":"Esta es la respuesta incorrecta 2",
+                "RespuestaIncorrecta3":"Esta es la respuesta incorrecta 3",
+                "StringRespuestaCorrecta":null,
+                "StringLinkRespuestaCorrecta":null,
+                "LinkRespuestaCorrecta":null
+              }
+            },
+            { 
+              "Key":{ 
+                "Id":0,
+                "Activo":false,
+                "Nombre":"Català",
+                "Image":null
+              },
+              "Value":{ 
+                "Id":5,
+                "Pregunta":"Aquesta es la pregunta 2 Nivell facil",
+                "RespuestaCorrecta":"Aquesta es la resposta correcta",
+                "RespuestaIncorrecta1":"Aquesta es la resposta incorrecta 1",
+                "RespuestaIncorrecta2":"Aquesta es la resposta incorrecta 2",
+                "RespuestaIncorrecta3":"Aquesta es la resposta incorrecta 3",
+                "StringRespuestaCorrecta":null,
+                "StringLinkRespuestaCorrecta":null,
+                "LinkRespuestaCorrecta":null
+              }
+            },
+            { 
+              "Key":{ 
+                "Id":0,
+                "Activo":false,
+                "Nombre":"English",
+                "Image":null
+              },
+              "Value":{ 
+                "Id":6,
+                "Pregunta":"Thats the second question",
+                "RespuestaCorrecta":"Thats the correct answer",
+                "RespuestaIncorrecta1":"Thats the incorrect answer 1",
+                "RespuestaIncorrecta2":"Thats the incorrect answer 2",
+                "RespuestaIncorrecta3":"Thats the incorrect answer 3",
+                "StringRespuestaCorrecta":null,
+                "StringLinkRespuestaCorrecta":null,
+                "LinkRespuestaCorrecta":null
+              }
+            }
+          ]
+        },
+        { 
+          "Id":0,
+          "IsRespTexto":true,
+          "ImagenPregunta":null,
+          "ImagenRespuestaCorrecta":null,
+          "ImagenRespuestaIncorrecta1":null,
+          "ImagenRespuestaIncorrecta2":null,
+          "ImagenRespuestaIncorrecta3":null,
+          "PreguntaIdiomas":[ 
+            { 
+              "Key":{ 
+                "Id":0,
+                "Activo":false,
+                "Nombre":"Castellano",
+                "Image":null
+              },
+              "Value":{ 
+                "Id":7,
+                "Pregunta":"Esta Es la Pregunta 3 Nivel facil",
+                "RespuestaCorrecta":"Esta Es la Respuesta correcta",
+                "RespuestaIncorrecta1":"Esta es la respuesta incorrecta 1",
+                "RespuestaIncorrecta2":"Esta es la respuesta incorrecta 2",
+                "RespuestaIncorrecta3":"Esta es la respuesta incorrecta 3",
+                "StringRespuestaCorrecta":null,
+                "StringLinkRespuestaCorrecta":null,
+                "LinkRespuestaCorrecta":null
+              }
+            },
+            { 
+              "Key":{ 
+                "Id":0,
+                "Activo":false,
+                "Nombre":"Català",
+                "Image":null
+              },
+              "Value":{ 
+                "Id":8,
+                "Pregunta":"Aquesta es la pregunta 3 Nivell facil",
+                "RespuestaCorrecta":"Aquesta es la resposta correcta",
+                "RespuestaIncorrecta1":"Aquesta es la resposta incorrecta 1",
+                "RespuestaIncorrecta2":"Aquesta es la resposta incorrecta 2",
+                "RespuestaIncorrecta3":"Aquesta es la resposta incorrecta 3",
+                "StringRespuestaCorrecta":null,
+                "StringLinkRespuestaCorrecta":null,
+                "LinkRespuestaCorrecta":null
+              }
+            },
+            { 
+              "Key":{ 
+                "Id":0,
+                "Activo":false,
+                "Nombre":"English",
+                "Image":null
+              },
+              "Value":{ 
+                "Id":9,
+                "Pregunta":"Thats the third question easy level",
+                "RespuestaCorrecta":"Thats the correct answer",
+                "RespuestaIncorrecta1":"Thats the incorrect answer 1",
+                "RespuestaIncorrecta2":"Thats the incorrect answer 2",
+                "RespuestaIncorrecta3":"Thats the incorrect answer 3",
+                "StringRespuestaCorrecta":null,
+                "StringLinkRespuestaCorrecta":null,
+                "LinkRespuestaCorrecta":null
+              }
+            }
+          ]
+        }
+      ]
+    },
+    { 
+      "Key":{ 
+        "Id":0,
+        "ExpoId":0,
+        "Activo":false,
+        "Nombre":"Intermedio",
+        "Literales":null
+      },
+      "Value":[ 
+        { 
+          "Id":0,
+          "IsRespTexto":true,
+          "ImagenPregunta":null,
+          "ImagenRespuestaCorrecta":null,
+          "ImagenRespuestaIncorrecta1":null,
+          "ImagenRespuestaIncorrecta2":null,
+          "ImagenRespuestaIncorrecta3":null,
+          "PreguntaIdiomas":[ 
+            { 
+              "Key":{ 
+                "Id":0,
+                "Activo":false,
+                "Nombre":"Castellano",
+                "Image":null
+              },
+              "Value":{ 
+                "Id":10,
+                "Pregunta":"Esta Es la Pregunta 1 Nivel Normal ",
+                "RespuestaCorrecta":"Esta Es la Respuesta correcta",
+                "RespuestaIncorrecta1":"Esta es la respuesta incorrecta 1",
+                "RespuestaIncorrecta2":"Esta es la respuesta incorrecta 2",
+                "RespuestaIncorrecta3":"Esta es la respuesta incorrecta 3",
+                "StringRespuestaCorrecta":null,
+                "StringLinkRespuestaCorrecta":null,
+                "LinkRespuestaCorrecta":null
+              }
+            },
+            { 
+              "Key":{ 
+                "Id":0,
+                "Activo":false,
+                "Nombre":"Català",
+                "Image":null
+              },
+              "Value":{ 
+                "Id":11,
+                "Pregunta":"Aquesta es la pregunta 1 Nivell Normal",
+                "RespuestaCorrecta":"Aquesta es la resposta correcta",
+                "RespuestaIncorrecta1":"Aquesta es la resposta incorrecta 1",
+                "RespuestaIncorrecta2":"Aquesta es la resposta incorrecta 2",
+                "RespuestaIncorrecta3":"Aquesta es la resposta incorrecta 3",
+                "StringRespuestaCorrecta":null,
+                "StringLinkRespuestaCorrecta":null,
+                "LinkRespuestaCorrecta":null
+              }
+            },
+            { 
+              "Key":{ 
+                "Id":0,
+                "Activo":false,
+                "Nombre":"English",
+                "Image":null
+              },
+              "Value":{ 
+                "Id":12,
+                "Pregunta":"Thats the first question easy Normal",
+                "RespuestaCorrecta":"Thats the correct answer",
+                "RespuestaIncorrecta1":"Thats the incorrect answer 1",
+                "RespuestaIncorrecta2":"Thats the incorrect answer 2",
+                "RespuestaIncorrecta3":"Thats the incorrect answer 3",
+                "StringRespuestaCorrecta":null,
+                "StringLinkRespuestaCorrecta":null,
+                "LinkRespuestaCorrecta":null
+              }
+            }
+          ]
+        },
+        { 
+          "Id":0,
+          "IsRespTexto":true,
+          "ImagenPregunta":null,
+          "ImagenRespuestaCorrecta":null,
+          "ImagenRespuestaIncorrecta1":null,
+          "ImagenRespuestaIncorrecta2":null,
+          "ImagenRespuestaIncorrecta3":null,
+          "PreguntaIdiomas":[ 
+            { 
+              "Key":{ 
+                "Id":0,
+                "Activo":false,
+                "Nombre":"Castellano",
+                "Image":null
+              },
+              "Value":{ 
+                "Id":13,
+                "Pregunta":"Esta Es la Pregunta 2 Nivel Normal",
+                "RespuestaCorrecta":"Esta Es la Respuesta correcta",
+                "RespuestaIncorrecta1":"Esta es la respuesta incorrecta 1",
+                "RespuestaIncorrecta2":"Esta es la respuesta incorrecta 2",
+                "RespuestaIncorrecta3":"Esta es la respuesta incorrecta 3",
+                "StringRespuestaCorrecta":null,
+                "StringLinkRespuestaCorrecta":null,
+                "LinkRespuestaCorrecta":null
+              }
+            },
+            { 
+              "Key":{ 
+                "Id":0,
+                "Activo":false,
+                "Nombre":"Català",
+                "Image":null
+              },
+              "Value":{ 
+                "Id":14,
+                "Pregunta":"Aquesta es la pregunta 2 Nivell Normal",
+                "RespuestaCorrecta":"Aquesta es la resposta correcta",
+                "RespuestaIncorrecta1":"Aquesta es la resposta incorrecta 1",
+                "RespuestaIncorrecta2":"Aquesta es la resposta incorrecta 2",
+                "RespuestaIncorrecta3":"Aquesta es la resposta incorrecta 3",
+                "StringRespuestaCorrecta":null,
+                "StringLinkRespuestaCorrecta":null,
+                "LinkRespuestaCorrecta":null
+              }
+            },
+            { 
+              "Key":{ 
+                "Id":0,
+                "Activo":false,
+                "Nombre":"English",
+                "Image":null
+              },
+              "Value":{ 
+                "Id":15,
+                "Pregunta":"Thats the second question normal level",
+                "RespuestaCorrecta":"Thats the correct answer",
+                "RespuestaIncorrecta1":"Thats the incorrect answer 1",
+                "RespuestaIncorrecta2":"Thats the incorrect answer 2",
+                "RespuestaIncorrecta3":"Thats the incorrect answer 3",
+                "StringRespuestaCorrecta":null,
+                "StringLinkRespuestaCorrecta":null,
+                "LinkRespuestaCorrecta":null
+              }
+            }
+          ]
+        },
+        { 
+          "Id":0,
+          "IsRespTexto":true,
+          "ImagenPregunta":null,
+          "ImagenRespuestaCorrecta":null,
+          "ImagenRespuestaIncorrecta1":null,
+          "ImagenRespuestaIncorrecta2":null,
+          "ImagenRespuestaIncorrecta3":null,
+          "PreguntaIdiomas":[ 
+            { 
+              "Key":{ 
+                "Id":0,
+                "Activo":false,
+                "Nombre":"Castellano",
+                "Image":null
+              },
+              "Value":{ 
+                "Id":16,
+                "Pregunta":"Esta Es la Pregunta 3 Nivel Normal",
+                "RespuestaCorrecta":"Esta Es la Respuesta correcta",
+                "RespuestaIncorrecta1":"Esta es la respuesta incorrecta 1",
+                "RespuestaIncorrecta2":"Esta es la respuesta incorrecta 2",
+                "RespuestaIncorrecta3":"Esta es la respuesta incorrecta 3",
+                "StringRespuestaCorrecta":null,
+                "StringLinkRespuestaCorrecta":null,
+                "LinkRespuestaCorrecta":null
+              }
+            },
+            { 
+              "Key":{ 
+                "Id":0,
+                "Activo":false,
+                "Nombre":"Català",
+                "Image":null
+              },
+              "Value":{ 
+                "Id":17,
+                "Pregunta":"Aquesta es la pregunta 3 Nivell Normal",
+                "RespuestaCorrecta":"Aquesta es la resposta correcta",
+                "RespuestaIncorrecta1":"Aquesta es la resposta incorrecta 1",
+                "RespuestaIncorrecta2":"Aquesta es la resposta incorrecta 2",
+                "RespuestaIncorrecta3":"Aquesta es la resposta incorrecta 3",
+                "StringRespuestaCorrecta":null,
+                "StringLinkRespuestaCorrecta":null,
+                "LinkRespuestaCorrecta":null
+              }
+            },
+            { 
+              "Key":{ 
+                "Id":0,
+                "Activo":false,
+                "Nombre":"English",
+                "Image":null
+              },
+              "Value":{ 
+                "Id":18,
+                "Pregunta":"Thats the third question Normal level",
+                "RespuestaCorrecta":"Thats the correct answer",
+                "RespuestaIncorrecta1":"Thats the incorrect answer 1",
+                "RespuestaIncorrecta2":"Thats the incorrect answer 2",
+                "RespuestaIncorrecta3":"Thats the incorrect answer 3",
+                "StringRespuestaCorrecta":null,
+                "StringLinkRespuestaCorrecta":null,
+                "LinkRespuestaCorrecta":null
+              }
+            }
+          ]
+        }
+      ]
+    },
+    { 
+      "Key":{ 
+        "Id":0,
+        "ExpoId":0,
+        "Activo":false,
+        "Nombre":"Difícil",
+        "Literales":null
+      },
+      "Value":[ 
+        { 
+          "Id":0,
+          "IsRespTexto":true,
+          "ImagenPregunta":null,
+          "ImagenRespuestaCorrecta":null,
+          "ImagenRespuestaIncorrecta1":null,
+          "ImagenRespuestaIncorrecta2":null,
+          "ImagenRespuestaIncorrecta3":null,
+          "PreguntaIdiomas":[ 
+            { 
+              "Key":{ 
+                "Id":0,
+                "Activo":false,
+                "Nombre":"Castellano",
+                "Image":null
+              },
+              "Value":{ 
+                "Id":19,
+                "Pregunta":"Esta Es la Pregunta 1 Nivel Dificil ",
+                "RespuestaCorrecta":"Esta Es la Respuesta correcta",
+                "RespuestaIncorrecta1":"Esta es la respuesta incorrecta 1",
+                "RespuestaIncorrecta2":"Esta es la respuesta incorrecta 2",
+                "RespuestaIncorrecta3":"Esta es la respuesta incorrecta 3",
+                "StringRespuestaCorrecta":null,
+                "StringLinkRespuestaCorrecta":null,
+                "LinkRespuestaCorrecta":null
+              }
+            },
+            { 
+              "Key":{ 
+                "Id":0,
+                "Activo":false,
+                "Nombre":"Català",
+                "Image":null
+              },
+              "Value":{ 
+                "Id":20,
+                "Pregunta":"Aquesta es la pregunta 1 Nivell Dificil",
+                "RespuestaCorrecta":"Aquesta es la resposta correcta",
+                "RespuestaIncorrecta1":"Aquesta es la resposta incorrecta 1",
+                "RespuestaIncorrecta2":"Aquesta es la resposta incorrecta 2",
+                "RespuestaIncorrecta3":"Aquesta es la resposta incorrecta 3",
+                "StringRespuestaCorrecta":null,
+                "StringLinkRespuestaCorrecta":null,
+                "LinkRespuestaCorrecta":null
+              }
+            },
+            { 
+              "Key":{ 
+                "Id":0,
+                "Activo":false,
+                "Nombre":"English",
+                "Image":null
+              },
+              "Value":{ 
+                "Id":21,
+                "Pregunta":"Thats the first question dificult level",
+                "RespuestaCorrecta":"Thats the correct answer",
+                "RespuestaIncorrecta1":"Thats the incorrect answer 1",
+                "RespuestaIncorrecta2":"Thats the incorrect answer 2",
+                "RespuestaIncorrecta3":"Thats the incorrect answer 3",
+                "StringRespuestaCorrecta":null,
+                "StringLinkRespuestaCorrecta":null,
+                "LinkRespuestaCorrecta":null
+              }
+            }
+          ]
+        },
+        { 
+          "Id":0,
+          "IsRespTexto":true,
+          "ImagenPregunta":null,
+          "ImagenRespuestaCorrecta":null,
+          "ImagenRespuestaIncorrecta1":null,
+          "ImagenRespuestaIncorrecta2":null,
+          "ImagenRespuestaIncorrecta3":null,
+          "PreguntaIdiomas":[ 
+            { 
+              "Key":{ 
+                "Id":0,
+                "Activo":false,
+                "Nombre":"Castellano",
+                "Image":null
+              },
+              "Value":{ 
+                "Id":22,
+                "Pregunta":"Esta Es la Pregunta 2 Nivel Dificil",
+                "RespuestaCorrecta":"Esta Es la Respuesta correcta",
+                "RespuestaIncorrecta1":"Esta es la respuesta incorrecta 1",
+                "RespuestaIncorrecta2":"Esta es la respuesta incorrecta 2",
+                "RespuestaIncorrecta3":"Esta es la respuesta incorrecta 3",
+                "StringRespuestaCorrecta":null,
+                "StringLinkRespuestaCorrecta":null,
+                "LinkRespuestaCorrecta":null
+              }
+            },
+            { 
+              "Key":{ 
+                "Id":0,
+                "Activo":false,
+                "Nombre":"Català",
+                "Image":null
+              },
+              "Value":{ 
+                "Id":23,
+                "Pregunta":"Aquesta es la pregunta 2 Nivell Dificil",
+                "RespuestaCorrecta":"Aquesta es la resposta correcta",
+                "RespuestaIncorrecta1":"Aquesta es la resposta incorrecta 1",
+                "RespuestaIncorrecta2":"Aquesta es la resposta incorrecta 2",
+                "RespuestaIncorrecta3":"Aquesta es la resposta incorrecta 3",
+                "StringRespuestaCorrecta":null,
+                "StringLinkRespuestaCorrecta":null,
+                "LinkRespuestaCorrecta":null
+              }
+            },
+            { 
+              "Key":{ 
+                "Id":0,
+                "Activo":false,
+                "Nombre":"English",
+                "Image":null
+              },
+              "Value":{ 
+                "Id":24,
+                "Pregunta":"Thats the second question dificult level",
+                "RespuestaCorrecta":"Thats the correct answer",
+                "RespuestaIncorrecta1":"Thats the incorrect answer 1",
+                "RespuestaIncorrecta2":"Thats the incorrect answer 2",
+                "RespuestaIncorrecta3":"Thats the incorrect answer 3",
+                "StringRespuestaCorrecta":null,
+                "StringLinkRespuestaCorrecta":null,
+                "LinkRespuestaCorrecta":null
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "Niveles":[ 
+    { 
+      "Id":0,
+      "Activo":false,
+      "Nombre":"Fácil"
+    },
+    { 
+      "Id":0,
+      "Activo":false,
+      "Nombre":"Intermedio"
+    },
+    { 
+      "Id":0,
+      "Activo":false,
+      "Nombre":"Difícil"
+    }
+  ]
+}

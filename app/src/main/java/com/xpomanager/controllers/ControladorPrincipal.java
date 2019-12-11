@@ -3,6 +3,10 @@ package com.xpomanager.controllers;
 import android.app.Application;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.MediaPlayer;
+import android.net.Uri;
+import android.os.Environment;
+import android.widget.VideoView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -18,6 +22,7 @@ import com.xpomanager.models.NivelPreguntas;
 import com.xpomanager.models.Personaje;
 import com.xpomanager.models.Pregunta;
 import com.xpomanager.models.PreguntaIdioma;
+import com.xpomanager.utils.StringUtils;
 
 import java.io.File;
 import java.io.FileReader;
@@ -31,15 +36,21 @@ public class ControladorPrincipal extends Application {
     /***********************
      * CONSTANTES GLOBALES *
      ***********************/
-    private final static String APP_FOLDER = "/storage/sdcard/XPOmanager/data/";
+    // Formats
+    private final static String[] VIDEO_FORMATS = {"webm", "mkv", "flv", "vob", "gif", "gifv",
+            "avi", "mov", "wmv", "yuv", "amv", "mp4", "m4p", "m4v", "3gp"};
+    private final static String[] IMAGE_FORMATS = {"png", "jpg", "gif", "webp", "tiff", "waw", "svg"};
+
+    // Paths
+    private final static String APP_FOLDER = "/sdcard/XPOmanager/data/";
     private final static String IMAGES_FOLDER = APP_FOLDER + "Imagenes/Elements/";
     private final static String JSON_PATH = APP_FOLDER + "exposicion.json";
     private final static String DEFAULT_PERSONAJE_IMAGE_SRC = IMAGES_FOLDER + "charE0I3.jpg";
     private final static String DEFAULT_IDIOMA_IMAGE_SRC = IMAGES_FOLDER + "flag1.jpg";
-    private final static String DEFAULT_APP_IMAGE_SRC = IMAGES_FOLDER + "appimage.jpg";
+    private final static String DEFAULT_APP_IMAGE_SRC = IMAGES_FOLDER + "spaceship.webm";
     private final static String DEFAULT_LOGO_GRUPO_SRC = IMAGES_FOLDER + "group_logo.png";
     private final static String DEFAULT_LOGO_MUSEO_SRC = IMAGES_FOLDER + "museum_logo.png";
-    private final static String DEFAULT_PLAY_BUTTON_SRC = IMAGES_FOLDER + "startplaybutton.png";
+    private final static String DEFAULT_PLAY_BUTTON_SRC = IMAGES_FOLDER + "playnow.png";
     private final static String DEFAULT_EXPO_URL = "https://mnactec.cat/es/inicio";
 
     /*************
@@ -62,6 +73,9 @@ public class ControladorPrincipal extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+    }
+
+    public void loadInfo() {
         cargarJson();
         transformExposicion();
     }
@@ -83,6 +97,7 @@ public class ControladorPrincipal extends Application {
 
         } catch (IOException e) {
             e.printStackTrace();
+            System.out.println(e.toString());
         }
     }
 
@@ -156,7 +171,7 @@ public class ControladorPrincipal extends Application {
 
     public Bitmap getPersonajeImageBitmap(Personaje personaje) {
         Bitmap bitmap = null;
-        String src = personaje.getImagenSrc();
+        String src = IMAGES_FOLDER + personaje.getImagenSrc();
 
         if (src == null) {
             src = DEFAULT_PERSONAJE_IMAGE_SRC;
@@ -173,7 +188,7 @@ public class ControladorPrincipal extends Application {
 
     public Bitmap getIdiomaImageBitmap(Idioma idioma) {
         Bitmap bitmap = null;
-        String src = idioma.getImagenSrc();
+        String src = IMAGES_FOLDER + idioma.getImagenSrc();
 
         if (src == null) {
             src = DEFAULT_IDIOMA_IMAGE_SRC;
@@ -188,6 +203,16 @@ public class ControladorPrincipal extends Application {
         BitmapFactory.decodeFile(idioma.getImagenSrc());
 
         return bitmap;
+    }
+
+    public Boolean isAppImageVideo() {
+        String imageSrc = IMAGES_FOLDER + DEFAULT_APP_IMAGE_SRC;
+
+        if (exposicion.getAppImageSrc() != null) {
+            imageSrc = exposicion.getAppImageSrc();
+        }
+
+        return StringUtils.stringContainsString(imageSrc, VIDEO_FORMATS);
     }
 
     public Bitmap getAppImageBitmap() {
@@ -205,6 +230,28 @@ public class ControladorPrincipal extends Application {
         }
 
         return bitmap;
+    }
+
+    public void setAppVideo(final VideoView videoView) {
+        videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                videoView.start();
+            }
+        });
+
+        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                videoView.start();
+            }
+        });
+
+        Uri uri = Uri.fromFile(new File(DEFAULT_APP_IMAGE_SRC));
+        videoView.setVideoPath(DEFAULT_APP_IMAGE_SRC);
+        videoView.pause();
+        videoView.seekTo(0);
+
     }
 
     public Bitmap getLogoMuseoBitmap() {

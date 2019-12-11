@@ -8,11 +8,9 @@ import com.xpomanager.models.Pregunta;
 import com.xpomanager.models.PreguntaIdioma;
 
 import java.security.SecureRandom;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 public class ControladorJuego {
@@ -75,7 +73,7 @@ public class ControladorJuego {
         //List<PreguntaIdioma> indexes = new ArrayList<>(respuestas.keySet());
         int index = 0;
 
-        for (PreguntaIdioma key: respuestas.keySet()) {
+        for (PreguntaIdioma key : respuestas.keySet()) {
             index++;
             if (key.equals(preguntaIdioma)) {
                 break;
@@ -94,7 +92,7 @@ public class ControladorJuego {
     }
 
     public void asignarRespuesta(PreguntaIdioma preguntaIdioma, Boolean acierto) {
-            respuestas.put(preguntaIdioma, acierto);
+        respuestas.put(preguntaIdioma, acierto);
     }
 
     public PreguntaIdioma siguientePregunta() {
@@ -119,7 +117,7 @@ public class ControladorJuego {
         SecureRandom rnd = new SecureRandom();
 
         StringBuilder sb = new StringBuilder(GAME_ID_LENGTH);
-        for(int i = 0; i < GAME_ID_LENGTH; i++) {
+        for (int i = 0; i < GAME_ID_LENGTH; i++) {
             sb.append(ALPHA_NUMERIC_STRING.charAt(rnd.nextInt(ALPHA_NUMERIC_STRING.length())));
         }
 
@@ -129,20 +127,17 @@ public class ControladorJuego {
     private Map<PreguntaIdioma, Boolean> generateRespuestas() {
         Map<PreguntaIdioma, Boolean> respuestas = new HashMap<>();
 
-        if (exposicion != null) {
-            if (exposicion.getPreguntas() != null) {
-                if (exposicion.getPreguntas().containsKey(nivel)) {
-                    for(Pregunta pregunta: exposicion.getPreguntas().get(nivel)) {
-                        if (pregunta != null) {
-                            if (pregunta.getPreguntaIdiomas() != null) {
-                                if (pregunta.getPreguntaIdiomas().containsKey(idioma)) {
-                                    PreguntaIdioma preguntaIdioma = pregunta.getPreguntaIdiomas().get(idioma);
+        if (exposicion != null &&
+                exposicion.getPreguntas() != null &&
+                exposicion.getPreguntas().containsKey(nivel)) {
+            for (Pregunta pregunta : exposicion.getPreguntas().get(nivel)) {
+                if (pregunta != null &&
+                        pregunta.getPreguntaIdiomas() != null &&
+                        pregunta.getPreguntaIdiomas().containsKey(idioma)) {
 
-                                    respuestas.put(preguntaIdioma, false);
-                                }
-                            }
-                        }
-                    }
+                    PreguntaIdioma preguntaIdioma = pregunta.getPreguntaIdiomas().get(idioma);
+
+                    respuestas.put(preguntaIdioma, false);
                 }
             }
         }
