@@ -9,6 +9,7 @@ import android.widget.ImageView;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.xpomanager.R;
@@ -37,12 +38,11 @@ public class AdaptadorObjects extends RecyclerView.Adapter<AdaptadorObjects.Obje
     }
 
     @Override
-    public ObjectsViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+    public ObjectsViewHolder onCreateViewHolder(final ViewGroup viewGroup, int viewType) {
         View itemView = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.recyclerview_item, viewGroup, false);
 
         return new ObjectsViewHolder(itemView, controladorPrincipal, linkedImageView);
-
     }
 
     @Override
@@ -72,7 +72,7 @@ public class AdaptadorObjects extends RecyclerView.Adapter<AdaptadorObjects.Obje
 
         }
 
-        private void bindObject(Object object) {
+        private void bindObject(final Object object) {
             Bitmap bitmap = null;
             Boolean selected = false;
 
@@ -94,6 +94,40 @@ public class AdaptadorObjects extends RecyclerView.Adapter<AdaptadorObjects.Obje
             }
 
             imageViewRecyclerView.setTag(object);
+
+            imageViewRecyclerView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Bitmap bitmap = null;
+                    ConstraintLayout constraintLayout = (ConstraintLayout) imageViewRecyclerView
+                            .getParent()
+                            .getParent()
+                            .getParent();
+
+                    constraintLayout.setVisibility(View.INVISIBLE);
+
+                    RecyclerView rv = (RecyclerView) imageViewRecyclerView
+                            .getParent()
+                            .getParent();
+
+                    for(int i = 0; i < rv.getChildCount(); i++) {
+                        ImageView imageView = rv.getChildAt(i).findViewById(R.id.ImageViewRecyclerView);
+                        imageView.setPadding(0,0,0,0);
+                        imageView.setBackgroundColor(Color.TRANSPARENT);
+                    }
+
+                    imageViewRecyclerView.setPadding(12,12,12,12);
+                    imageViewRecyclerView.setBackgroundColor(Color.parseColor("#80ff0000"));
+
+                    if (object instanceof Personaje) {
+                        bitmap = controladorPrincipal.getPersonajeImageBitmap((Personaje) object);
+                    } else if (object instanceof Idioma) {
+                        bitmap = controladorPrincipal.getIdiomaImageBitmap((Idioma) object);
+                    }
+
+                    linkedImageView.setImageBitmap(bitmap);
+                }
+            });
 
         }
 
