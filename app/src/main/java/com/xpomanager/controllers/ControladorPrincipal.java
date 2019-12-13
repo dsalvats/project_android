@@ -42,7 +42,7 @@ public class ControladorPrincipal extends Application {
     private final static String[] IMAGE_FORMATS = {"png", "jpg", "gif", "webp", "tiff", "waw", "svg"};
 
     // Paths
-    private final static String APP_FOLDER = "/sdcard/XPOmanager/data/";
+    private final static String APP_FOLDER = Environment.getExternalStorageDirectory().getAbsolutePath() + "/XPOmanager/data/";
     private final static String IMAGES_FOLDER = APP_FOLDER + "Imagenes/Elements/";
     private final static String JSON_PATH = APP_FOLDER + "exposicion.json";
     private final static String DEFAULT_PERSONAJE_IMAGE_SRC = IMAGES_FOLDER + "charE0I3.jpg";

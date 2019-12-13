@@ -41,7 +41,7 @@ public class RespuestaActivity extends AppCompatActivity {
 
         ControladorPrincipal controladorPrincipal = (ControladorPrincipal) super.getApplication();
         controladorJuego = controladorPrincipal.getControladorJuego();
-        preguntaIdioma = (PreguntaIdioma) getIntent().getSerializableExtra("PreguntaIdioma");
+        preguntaIdioma = controladorJuego.getCurrentPreguntaIdioma();
         Boolean acierto = (Boolean) getIntent().getSerializableExtra("Acierto");
 
         textViewRespuestaBool = findViewById(R.id.TextViewRespuestaBool);
@@ -67,10 +67,10 @@ public class RespuestaActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (controladorJuego.hasNextPregunta()) {
                     Intent intent = new Intent(view.getContext(), PreguntaActivity.class);
-                    startActivityForResult(intent, 0);
+                    startActivity(intent);
                 } else {
                     Intent intent = new Intent(view.getContext(), ResumenActivity.class);
-                    startActivityForResult(intent, 0);
+                    startActivity(intent);
                 }
                 finish();
             }

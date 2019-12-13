@@ -17,7 +17,6 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -36,7 +35,6 @@ import com.xpomanager.models.Idioma;
 import com.xpomanager.models.Nivel;
 import com.xpomanager.models.Personaje;
 
-import java.util.ArrayList;
 import java.util.List;
 
 

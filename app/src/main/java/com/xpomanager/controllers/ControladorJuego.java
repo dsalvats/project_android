@@ -1,6 +1,7 @@
 package com.xpomanager.controllers;
 
 import com.xpomanager.models.Exposicion;
+import com.xpomanager.models.ExposicionIdioma;
 import com.xpomanager.models.Idioma;
 import com.xpomanager.models.Nivel;
 import com.xpomanager.models.Personaje;
@@ -53,8 +54,10 @@ public class ControladorJuego {
 
     public String getStringProgress() {
         StringBuilder sb = new StringBuilder();
+        ExposicionIdioma exposicionIdioma = exposicion.getExposicionIdiomas().get(idioma);
 
-        sb.append("Pregunta ");
+
+        sb.append(exposicionIdioma.getQuestion()).append(" ");
         if (currentPreguntaIdioma == null) {
             sb.append(getTotalPreguntas());
         } else {
@@ -62,7 +65,7 @@ public class ControladorJuego {
         }
         sb.append("/");
         sb.append(getTotalPreguntas());
-        sb.append(" - Aciertos ");
+        sb.append(" - ").append(exposicionIdioma.getHits()).append(" ");
         sb.append(getPreguntasAcertadas());
 
         return sb.toString();
@@ -196,4 +199,11 @@ public class ControladorJuego {
         this.personaje = personaje;
     }
 
+    public PreguntaIdioma getCurrentPreguntaIdioma() {
+        return currentPreguntaIdioma;
+    }
+
+    public void setCurrentPreguntaIdioma(PreguntaIdioma currentPreguntaIdioma) {
+        this.currentPreguntaIdioma = currentPreguntaIdioma;
+    }
 }

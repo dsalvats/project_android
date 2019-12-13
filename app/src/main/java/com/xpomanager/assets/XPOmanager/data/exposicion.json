@@ -476,8 +476,8 @@
               "Value":{ 
                 "Id":13,
                 "Pregunta":"Esta Es la Pregunta 2 Nivel Normal",
-                "RespuestaCorrecta":"Esta Es la Respuesta correcta",
-                "RespuestaIncorrecta1":"Esta es la respuesta incorrecta 1",
+                "RespuestaCorrecta":null,
+                "RespuestaIncorrecta1":null,
                 "RespuestaIncorrecta2":"Esta es la respuesta incorrecta 2",
                 "RespuestaIncorrecta3":"Esta es la respuesta incorrecta 3",
                 "StringRespuestaCorrecta":null,

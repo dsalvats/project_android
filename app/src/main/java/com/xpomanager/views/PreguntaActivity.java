@@ -191,8 +191,7 @@ public class PreguntaActivity extends AppCompatActivity {
             controladorJuego.asignarRespuesta(preguntaIdioma, false);
         }
 
-        intent.putExtra("PreguntaIdioma", preguntaIdioma);
-        startActivityForResult(intent, 0);
+        startActivity(intent);
         finish();
     }
 
