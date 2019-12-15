@@ -31,7 +31,7 @@
                 android:layout_marginBottom="16dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintWidth_percent="0.12">
+                app:layout_constraintWidth_percent="0.18">
 
                 <ImageView
                     android:id="@+id/ImageViewPersonaje"
@@ -54,17 +54,17 @@
                 <TextView
                     android:id="@+id/TextViewDificultad"
                     android:layout_width="match_parent"
-                    android:textAlignment="center"
-                    android:textColor="#ffffff"
-                    android:textSize="20sp"
                     android:layout_height="wrap_content"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
                     android:layout_marginTop="16dp"
                     android:adjustViewBounds="true"
+                    android:background="#328232"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
                     android:src="@drawable/ic_launcher_background"
-                    app:layout_constraintTop_toBottomOf="@+id/ImageViewBandera"
-                    android:background="#328232" />
+                    android:textAlignment="center"
+                    android:textColor="#ffffff"
+                    android:textSize="15sp"
+                    app:layout_constraintTop_toBottomOf="@+id/ImageViewBandera" />
 
                 <!-- ImageView
                     android:id="@+id/ImageViewDificultad"
@@ -124,12 +124,12 @@
                     android:id="@+id/TextViewRespuestaCorrecta"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="#600cb544"
                     android:paddingTop="12dp"
                     android:paddingBottom="12dp"
                     android:textAlignment="center"
                     android:textColor="#ffffff"
-                    android:textSize="36sp"
-                    android:background="#600cb544"
+                    android:textSize="30sp"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
@@ -173,7 +173,7 @@
                     android:layout_height="wrap_content"
                     android:textAlignment="viewEnd"
                     android:textColor="#ffffff"
-                    android:textSize="24sp"
+                    android:textSize="20sp"
                     app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -195,7 +195,7 @@
                 android:layout_marginTop="34dp"
                 android:textAlignment="center"
                 android:textColor="#ffffff"
-                android:textSize="60sp"
+                android:textSize="44sp"
                 android:textStyle="bold"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:layout_editor_absoluteX="24dp" />
@@ -206,7 +206,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="34dp"
                 android:lineSpacingExtra="8sp"
-                android:padding="40dp"
+                android:padding="30dp"
                 android:textColor="#ffffff"
                 android:textSize="26sp"
                 app:layout_constraintTop_toBottomOf="@id/TextViewRespuestaBool"
@@ -218,14 +218,16 @@
             android:id="@+id/ButtonSiguiente"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#2cb2f4"
-            android:textColor="#ffffff"
-            android:textSize="40sp"
-            android:padding="12dp"
             android:layout_margin="24dp"
+            android:background="@anim/nextbuttonbg"
+            android:paddingLeft="20sp"
+            android:paddingTop="1sp"
+            android:paddingRight="15sp"
+            android:paddingBottom="10sp"
+            android:textColor="#ffffff"
+            android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-             />
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
