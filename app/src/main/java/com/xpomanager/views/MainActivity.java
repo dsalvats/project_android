@@ -80,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Other
     private VideoView videoViewMain;
+    private Idioma currentIdioma;
 
     /***********
      * MÉTODOS *
@@ -229,6 +230,21 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        imageViewIdioma.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+            @Override
+            public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+                if (!getSelectedIdioma().equals(currentIdioma)) {
+                    updateIdioma();
+                    currentIdioma = getSelectedIdioma();
+                }
+            }
+        });
+    }
+
+    private void updateIdioma() {
+        fillRecyclerViews();
+        fillExpoInfo();
     }
 
     private void setTextViewNivelListeners(){
@@ -379,6 +395,7 @@ public class MainActivity extends AppCompatActivity {
     private void setIdioma(Idioma idioma) {
         imageViewIdioma.setTag(idioma);
         setIdiomaImagen();
+        currentIdioma = idioma;
     }
 
     private void setIdiomaImagen() {

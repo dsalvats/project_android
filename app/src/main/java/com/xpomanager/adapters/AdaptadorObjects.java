@@ -186,6 +186,8 @@ public class AdaptadorObjects extends RecyclerView.Adapter<AdaptadorObjects.Obje
                         if (string != null)
                             ((TextView) linkedView).setText(string);
                     }
+
+                    linkedView.setTag(object);
                 }
             });
         }
