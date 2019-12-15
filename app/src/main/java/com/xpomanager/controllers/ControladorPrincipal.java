@@ -47,6 +47,15 @@ public class ControladorPrincipal extends Application {
     private final static String APP_FOLDER = Environment.getExternalStorageDirectory().getAbsolutePath() + "/XPOmanager/data/";
     private final static String IMAGES_FOLDER = APP_FOLDER + "Imagenes/Elements/";
     private final static String JSON_PATH = APP_FOLDER + "exposicion.json";
+    private final static String DEFAULT_PERSONAJE_IMAGE_SRC = IMAGES_FOLDER + "charE0I3.jpg";
+    private final static String DEFAULT_IDIOMA_IMAGE_SRC = IMAGES_FOLDER + "flag1.jpg";
+    private final static String DEFAULT_APP_IMAGE_SRC = IMAGES_FOLDER + "spaceship.webm";
+    private final static String DEFAULT_REVIEW_IMAGE_SRC = IMAGES_FOLDER + "sumimage.jpg";
+    private final static String DEFAULT_LOGO_GRUPO_SRC = IMAGES_FOLDER + "group_logo.png";
+    private final static String DEFAULT_LOGO_MUSEO_SRC = IMAGES_FOLDER + "museum_logo.png";
+    private final static String DEFAULT_PLAY_BUTTON_SRC = IMAGES_FOLDER + "playnow.png";
+    private final static String DEFAULT_HOME_BUTTON_SRC = IMAGES_FOLDER + "HomeIcon.png";
+    private final static String DEFAULT_EXPO_URL = "https://mnactec.cat/es/inicio";
 
     /*************
      * ATRIBUTOS *
@@ -233,6 +242,23 @@ public class ControladorPrincipal extends Application {
 
         return bitmap;
     }
+    public Bitmap getResumImageBitmap()
+    {
+        Bitmap bitmap = null;
+        String src = exposicion.getReviewImageSrc();
+
+        if (src == null) {
+            src = DEFAULT_REVIEW_IMAGE_SRC;
+        }
+        if (new File(src).exists()) {
+            bitmap = BitmapFactory.decodeFile(src);
+        } else {
+            // TODO: Recuperar desde @drawable una imagen default
+        }
+
+        return bitmap;
+
+    }
 
     public void setAppVideo(final VideoView videoView) {
         videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
@@ -265,6 +291,31 @@ public class ControladorPrincipal extends Application {
         if (exposicionIdioma != null) {
             exposicionURL = exposicionIdioma.getStartExpoURL();
             bitmap = QR.encodeAsBitmap(exposicionURL);
+        }
+
+        return bitmap;
+    }
+
+    public Bitmap getJugarAhoraBitmap() {
+        Bitmap bitmap = null;
+        String src =  DEFAULT_PLAY_BUTTON_SRC;
+
+        if (new File(src).exists()) {
+            bitmap = BitmapFactory.decodeFile(src);
+        } else {
+            // TODO: Recuperar desde @drawable una imagen default
+        }
+
+        return bitmap;
+    }
+    public Bitmap getHomeButtomBitmap() {
+        Bitmap bitmap = null;
+        String src = DEFAULT_HOME_BUTTON_SRC;
+
+        if (new File(src).exists()) {
+            bitmap = BitmapFactory.decodeFile(src);
+        } else {
+            // TODO: Recuperar desde @drawable una imagen default
         }
 
         return bitmap;
