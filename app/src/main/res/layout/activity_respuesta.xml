@@ -12,7 +12,6 @@
         android:id="@+id/ConstraintLayoutBackground"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@mipmap/ic_launcher_round"
         app:layout_constraintWidth_percent="1">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -46,33 +45,47 @@
                 <ImageView
                     android:id="@+id/ImageViewBandera"
                     android:layout_width="match_parent"
-                    android:layout_height="90dp"
+                    android:layout_height="0dp"
                     android:layout_marginTop="16dp"
                     android:adjustViewBounds="true"
-                    android:scaleType="fitXY"
                     android:src="@drawable/ic_launcher_background"
                     app:layout_constraintTop_toBottomOf="@+id/ImageViewPersonaje" />
 
-                <ImageView
+                <TextView
+                    android:id="@+id/TextViewDificultad"
+                    android:layout_width="match_parent"
+                    android:textAlignment="center"
+                    android:textColor="#ffffff"
+                    android:textSize="20sp"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:layout_marginTop="16dp"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/ic_launcher_background"
+                    app:layout_constraintTop_toBottomOf="@+id/ImageViewBandera"
+                    android:background="#328232" />
+
+                <!-- ImageView
                     android:id="@+id/ImageViewDificultad"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginTop="16dp"
                     android:adjustViewBounds="true"
-                    android:scaleType="fitXY"
                     android:src="@drawable/ic_launcher_background"
-                    app:layout_constraintTop_toBottomOf="@+id/ImageViewBandera" />
+                    app:layout_constraintTop_toBottomOf="@+id/ImageViewBandera" /-->
 
-                <ImageView
+                <!--ImageView
                     android:id="@+id/ImageViewAyuda"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginTop="16dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/ic_launcher_background"
+                    android:visibility="invisible"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/ImageViewDificultad" />
+                    app:layout_constraintTop_toBottomOf="@+id/ImageViewDificultad" /-->
 
                 <ImageView
                     android:id="@+id/ImageViewInicio"
@@ -80,21 +93,21 @@
                     android:layout_height="40dp"
                     android:layout_marginTop="16dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/ic_launcher_background"
+                    android:src="@drawable/endhomeicon"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/ImageViewAyuda" />
+                    app:layout_constraintTop_toBottomOf="@+id/TextViewDificultad" />
 
-                <TextView
+                <!--TextView
                     android:id="@+id/TextViewEntrarId"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
-                    android:layout_marginBottom="16dp"
                     android:text="us4qr"
                     android:textAlignment="center"
                     android:textColor="#ffffff"
                     android:textSize="30sp"
-                    app:layout_constraintTop_toBottomOf="@+id/ImageViewInicio" />
+                    android:visibility="invisible"
+                    app:layout_constraintTop_toBottomOf="@+id/ImageViewInicio" /-->
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -113,7 +126,6 @@
                     android:layout_height="wrap_content"
                     android:paddingTop="12dp"
                     android:paddingBottom="12dp"
-                    android:text="Chewbacca"
                     android:textAlignment="center"
                     android:textColor="#ffffff"
                     android:textSize="36sp"
@@ -121,9 +133,9 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
+                    android:id="@+id/ImageViewQR"
                     android:layout_width="160dp"
                     android:layout_height="160dp"
-                    android:src="@drawable/ic_launcher_background"
                     android:layout_marginTop="12dp"
                     android:layout_marginBottom="12dp"
                     app:layout_constraintTop_toBottomOf="@id/TextViewRespuestaCorrecta"
@@ -136,7 +148,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:layout_marginBottom="12dp"
-                    android:text="http://www.esa.int/Space_in_Member_States/Spain"
                     android:textAlignment="center"
                     android:textColor="#ffffff"
                     android:textSize="20sp"
@@ -181,27 +192,25 @@
                 android:id="@+id/TextViewRespuestaBool"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:layout_marginBottom="24dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginEnd="24dp"
+                android:layout_marginTop="34dp"
                 android:textAlignment="center"
                 android:textColor="#ffffff"
                 android:textSize="60sp"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="24dp" />
 
             <TextView
                 android:id="@+id/TextViewDescripcionRespuesta"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="64dp"
-                android:layout_marginBottom="24dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginEnd="24dp"
-                android:text="Chewbacca és un personatge fictici a la sèrie de pel·lícules de La Guerra de les Galàxies. L'enorme i pelut wookiee és originari del planeta Kashyyyk. És un company inseparable de Han Solo, el copilot i mecànic de la nau Falcó Mil·lenari. Algunes de les seves habilitats són que té una força excepcional i que és un tirador de primera. Va lluitar en les guerres dels clon juntament amb el mestre Jedi Yoda i el dirigent militar Tarfful. "
+                android:layout_marginTop="34dp"
+                android:lineSpacingExtra="8sp"
+                android:padding="40dp"
                 android:textColor="#ffffff"
-                android:textSize="24sp"
-                app:layout_constraintTop_toBottomOf="@id/TextViewRespuestaBool" />
+                android:textSize="26sp"
+                app:layout_constraintTop_toBottomOf="@id/TextViewRespuestaBool"
+                tools:layout_editor_absoluteX="24dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -213,7 +222,6 @@
             android:textColor="#ffffff"
             android:textSize="40sp"
             android:padding="12dp"
-            android:text="NEXT"
             android:layout_margin="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
