@@ -244,6 +244,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateIdioma() {
         fillRecyclerViews();
+        setNivel(getSelectedNivel());
         fillExpoInfo();
     }
 
