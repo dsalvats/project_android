@@ -106,7 +106,6 @@ public class ControladorPrincipal extends Application {
         HashMap<Nivel, List<Pregunta>> preguntas = new HashMap<>();
         HashMap<Idioma, PreguntaIdioma> preguntaIdiomas;
         HashMap<Idioma, ExposicionIdioma> exposicionIdiomas = new HashMap<>();
-        HashMap<Idioma, String> traducciones = new HashMap<>();
 
         if (exposicion != null) {
 
@@ -144,6 +143,8 @@ public class ControladorPrincipal extends Application {
 
             // Transforma List<Literal> a HashMap<Idioma, String>
             for (Nivel nivel: exposicion.getNiveles()) {
+                HashMap<Idioma, String> traducciones = new HashMap<>();
+
                 for (Literal literal: nivel.getLiterales()) {
                     for (Idioma idioma: exposicion.getIdiomas()) {
                         if (idioma.getNombre().equals(literal.getIdioma())) {

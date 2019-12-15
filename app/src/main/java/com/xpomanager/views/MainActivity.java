@@ -35,7 +35,9 @@ import com.xpomanager.models.Nivel;
 import com.xpomanager.models.Personaje;
 import com.xpomanager.utils.DateUtils;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -144,19 +146,23 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void setListToRecyclerView(List<?> objects, ImageView linkedImageView) {
+    private void setListToRecyclerView(List<?> objects, View linkedView) {
         RecyclerView recyclerView = null;
+        Map<String, Object> extraData = new HashMap<>();
 
         if (!objects.isEmpty()) {
             if (objects.get(0) instanceof Personaje) {
                 recyclerView = findViewById(R.id.RecyclerViewPersonaje);
             } else if (objects.get(0) instanceof Idioma) {
                 recyclerView = findViewById(R.id.RecyclerViewIdioma);
+            } else if (objects.get(0) instanceof Nivel) {
+                recyclerView = findViewById(R.id.RecyclerViewNivel);
+                extraData.put("Idioma", getSelectedIdioma());
             }
         }
 
         if (recyclerView != null) {
-            final AdaptadorObjects adaptadorObjects = new AdaptadorObjects(objects, controladorPrincipal, linkedImageView);
+            final AdaptadorObjects adaptadorObjects = new AdaptadorObjects(objects, extraData, controladorPrincipal, linkedView);
 
             recyclerView.setAdapter(adaptadorObjects);
 
@@ -177,6 +183,7 @@ public class MainActivity extends AppCompatActivity {
         setImageViewJugarAhoraListeners();
         setImageViewPersonajeListeners();
         setImageViewIdiomaListeners();
+        setTextViewNivelListeners();
     }
 
     private void setConstraintLayoutMainListeners() {
@@ -191,7 +198,7 @@ public class MainActivity extends AppCompatActivity {
     private void setConstraintLayoutRecyclerViewsInvisible() {
         constraintLayoutRecyclerViewPersonaje.setVisibility(View.INVISIBLE);
         constraintLayoutRecyclerViewIdioma.setVisibility(View.INVISIBLE);
-        // constraintLayoutRecyclerViewLayoutNivel.setVisibility(View.INVISIBLE);
+        constraintLayoutRecyclerViewNivel.setVisibility(View.INVISIBLE);
     }
 
     private void setImageViewPersonajeListeners() {
@@ -218,6 +225,21 @@ public class MainActivity extends AppCompatActivity {
                     constraintLayoutRecyclerViewIdioma.setVisibility(View.VISIBLE);
                 } else {
                     constraintLayoutRecyclerViewIdioma.setVisibility(View.INVISIBLE);
+                    setConstraintLayoutRecyclerViewsInvisible();
+                }
+            }
+        });
+    }
+
+    private void setTextViewNivelListeners(){
+        textViewNivel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (constraintLayoutRecyclerViewNivel.getVisibility() == View.INVISIBLE) {
+                    setConstraintLayoutRecyclerViewsInvisible();
+                    constraintLayoutRecyclerViewNivel.setVisibility(View.VISIBLE);
+                } else {
+                    constraintLayoutRecyclerViewNivel.setVisibility(View.INVISIBLE);
                     setConstraintLayoutRecyclerViewsInvisible();
                 }
             }
@@ -251,8 +273,8 @@ public class MainActivity extends AppCompatActivity {
         boolean result = false;
 
         if (constraintLayoutRecyclerViewPersonaje.getVisibility() == View.VISIBLE ||
-                constraintLayoutRecyclerViewIdioma.getVisibility() == View.VISIBLE /*||
-            constraintLayoutRecyclerViewLayoutNivel.getVisibility() == View.VISIBLE*/) {
+                constraintLayoutRecyclerViewIdioma.getVisibility() == View.VISIBLE ||
+                constraintLayoutRecyclerViewNivel.getVisibility() == View.VISIBLE) {
             result = true;
         }
 
@@ -377,9 +399,11 @@ public class MainActivity extends AppCompatActivity {
     private void fillRecyclerViews() {
         List<Personaje> personajes = controladorPrincipal.getExposicion().getPersonajes();
         List<Idioma> idiomas = controladorPrincipal.getExposicion().getIdiomas();
+        List<Nivel> niveles = controladorPrincipal.getExposicion().getNiveles();
 
         setListToRecyclerView(personajes, imageViewPersonaje);
         setListToRecyclerView(idiomas, imageViewIdioma);
+        setListToRecyclerView(niveles, textViewNivel);
     }
 
     private void fillExpoInfo() {
