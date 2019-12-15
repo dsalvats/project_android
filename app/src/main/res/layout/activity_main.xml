@@ -14,33 +14,39 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/ConstraintLayoutCentral"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/TextViewLiteralJugarAhora"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAlignment="textEnd"
-            android:textColor="#CC3693"
-            android:textSize="56sp"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.5"
+        app:layout_constraintHeight_percent="0.3">
 
         <ImageView
             android:id="@+id/ImageViewJugarAhora"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-            android:adjustViewBounds="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:scaleType="fitXY"
-            android:src="@drawable/ic_launcher_background"
-            app:layout_constraintBottom_toTopOf="@+id/TextViewLiteralJugarAhora"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/TextViewLiteralJugarAhora"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:maxLines="1"
+            android:textColor="#464159"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:autoSizeTextType="uniform"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintWidth_percent="0.6"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -69,7 +75,6 @@
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:scaleType="fitXY"
-                android:src="@drawable/ic_launcher_background"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -114,7 +119,6 @@
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:scaleType="fitXY"
-                android:src="@drawable/ic_launcher_background"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -200,7 +204,6 @@
             android:layout_marginTop="16dp"
             android:scaleType="fitXY"
             android:visibility="invisible"
-            android:src="@drawable/ic_launcher_background"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ConstraintLayoutNivel" />
@@ -240,7 +243,6 @@
         android:id="@+id/ConstraintLayoutLateralDerecho"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_marginBottom="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintWidth_percent="0.80">
 
@@ -263,7 +265,6 @@
                 android:layout_height="100dp"
                 android:adjustViewBounds="true"
                 android:scaleType="fitXY"
-                android:src="@drawable/ic_launcher_background"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
             -->
@@ -294,61 +295,69 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/ConstraintLayoutLateralDerechoBottom"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_height="0dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintWidth_percent="0.3">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.3">
 
             <TextView
                 android:id="@+id/TextViewLiteralExposicion"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:autoSizeTextType="uniform"
+                android:maxLines="1"
                 android:textAlignment="textEnd"
                 android:textColor="#ffffff"
-                android:textSize="20sp"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintBottom_toTopOf="@+id/TextViewNombreExposicion"
+                app:layout_constraintHeight_percent="0.15" />
 
             <TextView
                 android:id="@+id/TextViewNombreExposicion"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:autoSizeTextType="uniform"
+                android:maxLines="1"
                 android:textAlignment="textEnd"
                 android:textColor="#ffffff"
-                android:textSize="30sp"
                 android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/TextViewLiteralExposicion" />
+                app:layout_constraintBottom_toTopOf="@+id/TextViewDescripcion"
+                app:layout_constraintHeight_percent="0.25" />
 
             <TextView
                 android:id="@+id/TextViewDescripcion"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:autoSizeTextType="uniform"
+                android:maxLines="1"
                 android:textAlignment="textEnd"
                 android:textColor="#ffffff"
-                android:textSize="30sp"
                 android:textStyle="italic"
-                app:layout_constraintTop_toBottomOf="@+id/TextViewNombreExposicion" />
+                app:layout_constraintBottom_toTopOf="@+id/TextViewDescripcion2"
+                app:layout_constraintHeight_percent="0.25" />
 
             <TextView
                 android:id="@+id/TextViewDescripcion2"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:autoSizeTextType="uniform"
+                android:maxLines="1"
                 android:textAlignment="textEnd"
                 android:textColor="#ffffff"
-                android:textSize="20sp"
-                app:layout_constraintTop_toBottomOf="@+id/TextViewDescripcion" />
+                app:layout_constraintBottom_toTopOf="@+id/TextViewLinkExposicion"
+                app:layout_constraintHeight_percent="0.2" />
 
             <TextView
                 android:id="@+id/TextViewLinkExposicion"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_height="0dp"
+                android:autoSizeTextType="uniform"
+                android:maxLines="1"
                 android:textAlignment="textEnd"
                 android:textColor="#ffffff"
-                android:textSize="12sp"
-                app:layout_constraintTop_toBottomOf="@+id/TextViewDescripcion2" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHeight_percent="0.15" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

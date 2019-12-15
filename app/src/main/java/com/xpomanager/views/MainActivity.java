@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Constraints
     private ConstraintLayout constraintLayoutMain;
+    private ConstraintLayout constraintLayoutCentral;
     private ConstraintLayout constraintLayoutRecyclerViewPersonaje;
     private ConstraintLayout constraintLayoutRecyclerViewIdioma;
     private ConstraintLayout constraintLayoutRecyclerViewNivel;
@@ -313,6 +314,7 @@ public class MainActivity extends AppCompatActivity {
     private void declareElements() {
         // ConstraintLayouts
         constraintLayoutMain = findViewById(R.id.ConstraintLayoutMain);
+        constraintLayoutCentral = findViewById(R.id.ConstraintLayoutCentral);
         constraintLayoutRecyclerViewPersonaje = findViewById(R.id.ConstraintLayoutRecyclerViewPersonaje);
         constraintLayoutRecyclerViewIdioma = findViewById(R.id.ConstraintLayoutRecyclerViewIdioma);
         constraintLayoutRecyclerViewNivel = findViewById(R.id.ConstraintLayoutRecyclerViewNivel);
@@ -357,8 +359,7 @@ public class MainActivity extends AppCompatActivity {
         imageViewJugarAhora.setImageBitmap(controladorPrincipal.getJugarAhoraBitmap());
         Animation pulse = AnimationUtils.loadAnimation(this, R.anim.pulse);
         pulse.setRepeatCount(Animation.INFINITE);
-        pulse.setRepeatMode(Animation.REVERSE);
-        imageViewJugarAhora.startAnimation(pulse);
+        constraintLayoutCentral.startAnimation(pulse);
     }
 
     private void setExpoURLQR() {
