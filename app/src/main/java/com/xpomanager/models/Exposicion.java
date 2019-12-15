@@ -33,7 +33,7 @@ public class Exposicion {
     private int answerTimeOut;
     @SerializedName("ReviewTimeOut")
     private int reviewTimeOut;
-    @SerializedName("AppImageSrc")
+    @SerializedName("AppImage")
     private String appImageSrc;
     @SerializedName("ReviewImageSrc")
     private String reviewImageSrc;

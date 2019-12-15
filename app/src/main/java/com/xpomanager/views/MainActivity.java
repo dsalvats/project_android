@@ -34,6 +34,7 @@ import com.xpomanager.models.Idioma;
 import com.xpomanager.models.Nivel;
 import com.xpomanager.models.Personaje;
 import com.xpomanager.utils.DateUtils;
+import com.xpomanager.utils.Resources;
 
 import java.util.HashMap;
 import java.util.List;
@@ -91,6 +92,10 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
     }
 
+    /**
+     * Evento generado al cargar la activity
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -111,6 +116,9 @@ public class MainActivity extends AppCompatActivity {
         setElementsListeners();
     }
 
+    /**
+     * Comprueba los permisos que tiene la aplicación
+     */
     private void checkPermissions() {
         if (ContextCompat.checkSelfPermission(MainActivity.this,
                 Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
@@ -120,6 +128,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Pregunta al usuario para dar permisos de lectura en el almacenamiento externo
+     */
     private void requestStoragePermission() {
         if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                 Manifest.permission.READ_EXTERNAL_STORAGE)) {
@@ -148,6 +159,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Asigna una lista de objetos a una vista dada si es posible
+     * @param objects Lista de objetos a asignar
+     * @param linkedView Vista donde se asignarán los objetos
+     */
     private void setListToRecyclerView(List<?> objects, View linkedView) {
         RecyclerView recyclerView = null;
         Map<String, Object> extraData = new HashMap<>();
@@ -175,11 +191,17 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Inicializamos el controlador principal en esta activity
+     */
     private void fillControladorPrincipal() {
         controladorPrincipal = (ControladorPrincipal) super.getApplication();
         controladorPrincipal.loadInfo();
     }
 
+    /**
+     * Asignamos los listeners a los elementos deseados
+     */
     private void setElementsListeners() {
         setConstraintLayoutMainListeners();
         setImageViewJugarAhoraListeners();
@@ -188,6 +210,9 @@ public class MainActivity extends AppCompatActivity {
         setTextViewNivelListeners();
     }
 
+    /**
+     * Asignación de listeners de ConstraintLayoutMain
+     */
     private void setConstraintLayoutMainListeners() {
         constraintLayoutMain.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -197,12 +222,18 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Oculta los ConstraintLayoutRecyclerView de la activity
+     */
     private void setConstraintLayoutRecyclerViewsInvisible() {
         constraintLayoutRecyclerViewPersonaje.setVisibility(View.INVISIBLE);
         constraintLayoutRecyclerViewIdioma.setVisibility(View.INVISIBLE);
         constraintLayoutRecyclerViewNivel.setVisibility(View.INVISIBLE);
     }
 
+    /**
+     * Asignación de listeners de ImageViewPersonaje
+     */
     private void setImageViewPersonajeListeners() {
         imageViewPersonaje.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -218,6 +249,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Asignación de listners de ImageViewIdioma
+     */
     private void setImageViewIdiomaListeners() {
         imageViewIdioma.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -243,12 +277,19 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Funcionalidad para cuando cambiamos de idioma se cambien
+     * los literales y alguna información más vinculada al idioma
+     */
     private void updateIdioma() {
         fillRecyclerViews();
         setNivel(getSelectedNivel());
         fillExpoInfo();
     }
 
+    /**
+     * Asignación de listeners a TextViewNivel
+     */
     private void setTextViewNivelListeners(){
         textViewNivel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -264,6 +305,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Asignación de listeners de ImageViewJugarAhora
+     */
     private void setImageViewJugarAhoraListeners() {
         imageViewJugarAhora.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -287,6 +331,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Comprueba si algun ConstraintLayoutRecyclerView está abierto
+     * @return Si algún ConstraintLayoutRecyclerView está abierto devuelve true.
+     * En caso contrario, devuelve null.
+     */
     private Boolean isAnyConstraintLayoutOpened() {
         boolean result = false;
 
@@ -299,18 +348,33 @@ public class MainActivity extends AppCompatActivity {
         return result;
     }
 
+    /**
+     * Devuelve el personaje que el usuario tiene seleccionado
+     * @return Personaje que el usuario tiene seleccionado
+     */
     private Personaje getSelectedPersonaje() {
         return (Personaje) imageViewPersonaje.getTag();
     }
 
+    /**
+     * Devuelve el idioma que el usuario tiene seleccionado
+     * @return Idioma que el usuario tiene seleccionado
+     */
     private Idioma getSelectedIdioma() {
         return (Idioma) imageViewIdioma.getTag();
     }
 
+    /**
+     * Devuelve el nivel que el usuario tiene seleccionado
+     * @return Nivel que el usuario tiene seleccionado
+     */
     private Nivel getSelectedNivel() {
         return (Nivel) textViewNivel.getTag();
     }
 
+    /**
+     * Inicializa todos los atributos de tipo vista con sus respectivas referencias en el context
+     */
     private void declareElements() {
         // ConstraintLayouts
         constraintLayoutMain = findViewById(R.id.ConstraintLayoutMain);
@@ -341,31 +405,45 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Asigna un personaje, idioma y nivel por defecto al abrir la aplicación
+     */
     private void setDefaultSettings() {
         setPersonaje(controladorPrincipal.getExposicion().getPersonajes().get(DEFAULT_INT_PERSONAJE));
         setIdioma(controladorPrincipal.getExposicion().getIdiomas().get(DEFAULT_INT_IDIOMA));
         setNivel(controladorPrincipal.getExposicion().getNiveles().get(DEFAULT_INT_NIVEL));
     }
 
+    /**
+     * Asigna las imagenes de la aplicación
+     */
     private void setImages() {
         setAppImage();
-        //setGroupLogo();
         setMuseoLogo();
         setExpoURLQR();
         setPlayNowImage();
     }
 
+    /**
+     * Asigna la imagen de jugar ahora y su texto a mostrar dependiendo del idioma
+     */
     private void setPlayNowImage() {
-        imageViewJugarAhora.setImageBitmap(controladorPrincipal.getJugarAhoraBitmap());
+        imageViewJugarAhora.setImageResource(Resources.getPlayNow());
         Animation pulse = AnimationUtils.loadAnimation(this, R.anim.pulse);
         pulse.setRepeatCount(Animation.INFINITE);
         constraintLayoutCentral.startAnimation(pulse);
     }
 
+    /**
+     * Asigna la imagen del QR dependiendo de la URL de la exposición
+     */
     private void setExpoURLQR() {
         imageViewQRMuseo.setImageBitmap(controladorPrincipal.getMainQRBitMap(getSelectedIdioma()));
     }
 
+    /**
+     * Asigna un video de fondo o una imagen dependiendo del JSON
+     */
     private void setAppImage() {
         if (controladorPrincipal.isAppImageVideo()) {
             controladorPrincipal.setAppVideo(videoViewMain);
@@ -375,46 +453,69 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /*private void setGroupLogo() {
-        imageViewLogoGrupo.setImageBitmap(controladorPrincipal.getLogoGrupoBitMap());
-    }*/
-
+    /**
+     * Asigna la imagen del logo del museo
+     */
     private void setMuseoLogo() {
-        imageViewLogoMuseo.setImageBitmap(controladorPrincipal.getLogoMuseoBitmap());
+        imageViewLogoMuseo.setImageResource(Resources.getMuseumLogo());
     }
 
+    /**
+     * Selecciona un personaje
+     * @param personaje Personaje a seleccionar
+     */
     private void setPersonaje(Personaje personaje) {
         imageViewPersonaje.setTag(personaje);
         setPersonajeImagen();
     }
 
+    /**
+     * Asigna la imagen de un personaje
+     */
     private void setPersonajeImagen() {
         Bitmap bitmap = controladorPrincipal.getPersonajeImageBitmap(getSelectedPersonaje());
 
         imageViewPersonaje.setImageBitmap(bitmap);
     }
 
+    /**
+     * Selecciona un idioma
+     * @param idioma idioma a seleccionar
+     */
     private void setIdioma(Idioma idioma) {
         imageViewIdioma.setTag(idioma);
         setIdiomaImagen();
         currentIdioma = idioma;
     }
 
+    /**
+     * Asigna la imagen de una bandera
+     */
     private void setIdiomaImagen() {
         Bitmap bitmap = controladorPrincipal.getIdiomaImageBitmap(getSelectedIdioma());
 
         imageViewIdioma.setImageBitmap(bitmap);
     }
 
+    /**
+     * Selecciona un nivel
+     * @param nivel Nivel a seleccionar
+     */
     private void setNivel(Nivel nivel) {
         textViewNivel.setTag(nivel);
         setNivelText();
     }
 
+    /**
+     * Asigna un texto al nivel dependiendo del idioma seleccionado
+     */
     private void setNivelText() {
         textViewNivel.setText(getSelectedNivel().getTraducciones().get(getSelectedIdioma()));
     }
 
+    /**
+     * Asigna los personajes, idiomas y niveles a los recycler view
+     */
     private void fillRecyclerViews() {
         List<Personaje> personajes = controladorPrincipal.getExposicion().getPersonajes();
         List<Idioma> idiomas = controladorPrincipal.getExposicion().getIdiomas();
@@ -425,6 +526,9 @@ public class MainActivity extends AppCompatActivity {
         setListToRecyclerView(niveles, textViewNivel);
     }
 
+    /**
+     * Asigna la información de la exposición
+     */
     private void fillExpoInfo() {
         Exposicion exposicion = controladorPrincipal.getExposicion();
         Idioma idioma = getSelectedIdioma();
@@ -462,6 +566,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Llama a otros métodos para acabar de llenar/settear elementos
+     */
     private void fillElements() {
         fillExpoInfo();
         fillRecyclerViews();
