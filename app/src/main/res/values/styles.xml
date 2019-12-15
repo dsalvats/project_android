@@ -8,8 +8,8 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
-        <item name="android:textViewStyle">@style/LatoTextViewStyle</item>
-        <item name="android:buttonStyle">@style/LatoButtonStyle</item>
+        <item name="android:textViewStyle">@style/PfRondaSevenBoldTextViewStyle</item>
+        <item name="android:buttonStyle">@style/PfRondaSevenBoldButtonStyle</item>
     </style>
 
     <style name="LatoTextViewStyle" parent="android:Widget.TextView">
@@ -18,6 +18,14 @@
 
     <style name="LatoButtonStyle" parent="android:Widget.Holo.Button">
         <item name="android:fontFamily">@font/lato</item>
+    </style>
+
+    <style name="PfRondaSevenBoldTextViewStyle" parent="android:Widget.TextView">
+        <item name="android:fontFamily">@font/pf_ronda_seven_bold</item>
+    </style>
+
+    <style name="PfRondaSevenBoldButtonStyle" parent="android:Widget.Holo.Button">
+        <item name="android:fontFamily">@font/pf_ronda_seven_bold</item>
     </style>
 
 </resources>
