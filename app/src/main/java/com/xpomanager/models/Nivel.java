@@ -2,6 +2,9 @@ package com.xpomanager.models;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.HashMap;
+import java.util.List;
+
 public class Nivel {
 
     /*************
@@ -13,14 +16,19 @@ public class Nivel {
     private boolean activo;
     @SerializedName("Nombre")
     private String nombre;
+    @SerializedName("Literales")
+    private List<Literal> literales;
+    private HashMap<Idioma, String> traducciones;
 
     /*****************
      * CONSTRUCTORES *
      *****************/
-    public Nivel(int id, boolean activo, String nombre) {
+    public Nivel(int id, boolean activo, String nombre, List<Literal> literales, HashMap<Idioma, String> traducciones) {
         this.id = id;
         this.activo = activo;
         this.nombre = nombre;
+        this.literales = literales;
+        this.traducciones = traducciones;
     }
 
     public Nivel() {
@@ -53,4 +61,19 @@ public class Nivel {
         this.nombre = nombre;
     }
 
+    public List<Literal> getLiterales() {
+        return literales;
+    }
+
+    public void setLiterales(List<Literal> literales) {
+        this.literales = literales;
+    }
+
+    public HashMap<Idioma, String> getTraducciones() {
+        return traducciones;
+    }
+
+    public void setTraducciones(HashMap<Idioma, String> traducciones) {
+        this.traducciones = traducciones;
+    }
 }

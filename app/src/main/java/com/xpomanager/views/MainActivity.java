@@ -1,6 +1,5 @@
 package com.xpomanager.views;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -34,6 +33,7 @@ import com.xpomanager.models.ExposicionIdioma;
 import com.xpomanager.models.Idioma;
 import com.xpomanager.models.Nivel;
 import com.xpomanager.models.Personaje;
+import com.xpomanager.utils.DateUtils;
 
 import java.util.List;
 
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
      * CONSTANTES GLOBALES *
      ***********************/
     private final static int DEFAULT_INT_PERSONAJE = 0;
-    private final static int DEFAULT_INT_IDIOMA = 2;
+    private final static int DEFAULT_INT_IDIOMA = 0;
     private final static int DEFAULT_INT_NIVEL = 0;
 
     /*************
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
     private ConstraintLayout constraintLayoutMain;
     private ConstraintLayout constraintLayoutRecyclerViewPersonaje;
     private ConstraintLayout constraintLayoutRecyclerViewIdioma;
-    private ConstraintLayout constraintLayoutRecyclerViewLayoutNivel;
+    private ConstraintLayout constraintLayoutRecyclerViewNivel;
 
     // TextViews
     private TextView textViewLiteralExposicion;
@@ -66,11 +66,11 @@ public class MainActivity extends AppCompatActivity {
     private TextView textViewDescripcion;
     private TextView textViewDescripcion2;
     private TextView textViewLinkExposicion;
+    private TextView textViewNivel;
 
     // ImageViews
     private ImageView imageViewPersonaje;
     private ImageView imageViewIdioma;
-    private ImageView imageViewNivel;
     private ImageView imageViewJugarAhora;
     //private ImageView imageViewLogoGrupo;
     private ImageView imageViewLogoMuseo;
@@ -98,12 +98,7 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-
-        if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(MainActivity.this, "ya tienes permisos", Toast.LENGTH_LONG);
-        } else {
-            requestStoragePermission();
-        }
+        checkPermissions();
 
         fillControladorPrincipal();
         declareElements();
@@ -112,15 +107,26 @@ public class MainActivity extends AppCompatActivity {
         setElementsListeners();
     }
 
+    private void checkPermissions() {
+        if (ContextCompat.checkSelfPermission(MainActivity.this,
+                Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(MainActivity.this, "Ya tienes permisos", Toast.LENGTH_LONG);
+        } else {
+            requestStoragePermission();
+        }
+    }
+
     private void requestStoragePermission() {
-        if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                Manifest.permission.READ_EXTERNAL_STORAGE)) {
             new AlertDialog.Builder(this)
                     .setTitle("Permission needed")
                     .setMessage("This permission is needed because of this and that")
                     .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            ActivityCompat.requestPermissions(MainActivity.this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+                            ActivityCompat.requestPermissions(MainActivity.this,
+                                    new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
                         }
                     })
                     .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
@@ -132,19 +138,10 @@ public class MainActivity extends AppCompatActivity {
                     .create()
                     .show();
         } else {
-            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+            ActivityCompat.requestPermissions(this,
+                    new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
         }
 
-    }
-
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (requestCode == 1) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(this, "Permission GRANTED", Toast.LENGTH_SHORT);
-            } else {
-                Toast.makeText(this, "Permission DENIED", Toast.LENGTH_SHORT);
-            }
-        }
     }
 
     private void setListToRecyclerView(List<?> objects, ImageView linkedImageView) {
@@ -271,7 +268,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private Nivel getSelectedNivel() {
-        return (Nivel) imageViewNivel.getTag();
+        return (Nivel) textViewNivel.getTag();
     }
 
     private void declareElements() {
@@ -279,7 +276,7 @@ public class MainActivity extends AppCompatActivity {
         constraintLayoutMain = findViewById(R.id.ConstraintLayoutMain);
         constraintLayoutRecyclerViewPersonaje = findViewById(R.id.ConstraintLayoutRecyclerViewPersonaje);
         constraintLayoutRecyclerViewIdioma = findViewById(R.id.ConstraintLayoutRecyclerViewIdioma);
-        // constraintLayoutNivel = findViewById(R.id.ConstraintLayoutNivel);
+        constraintLayoutRecyclerViewNivel = findViewById(R.id.ConstraintLayoutRecyclerViewNivel);
 
         // TextViews
         textViewLiteralExposicion = findViewById(R.id.TextViewLiteralExposicion);
@@ -288,11 +285,11 @@ public class MainActivity extends AppCompatActivity {
         textViewDescripcion = findViewById(R.id.TextViewDescripcion);
         textViewDescripcion2 = findViewById(R.id.TextViewDescripcion2);
         textViewLinkExposicion = findViewById(R.id.TextViewLinkExposicion);
+        textViewNivel = findViewById(R.id.TextViewNivel);
 
         // ImageViews
         imageViewPersonaje = findViewById(R.id.ImageViewPersonaje);
         imageViewIdioma = findViewById(R.id.ImageViewIdioma);
-        imageViewNivel = findViewById(R.id.ImageViewDificultad);
         imageViewJugarAhora = findViewById(R.id.ImageViewJugarAhora);
         // imageViewLogoGrupo = findViewById(R.id.ImageViewLogoGrupo);
         imageViewLogoMuseo = findViewById(R.id.ImageViewLogoMuseo);
@@ -369,7 +366,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setNivel(Nivel nivel) {
-        imageViewNivel.setTag(nivel);
+        textViewNivel.setTag(nivel);
+        setNivelText();
+    }
+
+    private void setNivelText() {
+        textViewNivel.setText(getSelectedNivel().getTraducciones().get(getSelectedIdioma()));
     }
 
     private void fillRecyclerViews() {
@@ -393,9 +395,10 @@ public class MainActivity extends AppCompatActivity {
             StringBuilder sb = new StringBuilder();
 
             if (exposicionIdioma.getStartExpoDateFrom() != null) {
+                String dateFrom = DateUtils.rawDateToFormated(exposicion.getFechaInicio());
                 sb.append(exposicionIdioma.getStartExpoDateFrom());
                 sb.append(" ");
-                sb.append(exposicion.getFechaInicio());
+                sb.append(dateFrom);
             }
 
             if (!sb.toString().equals("")) {
@@ -403,9 +406,10 @@ public class MainActivity extends AppCompatActivity {
             }
 
             if (exposicionIdioma.getStartExpoDateTo() != null) {
+                String dateTo = DateUtils.rawDateToFormated(exposicion.getFechaFin());
                 sb.append(exposicionIdioma.getStartExpoDateTo());
                 sb.append(" ");
-                sb.append(exposicion.getFechaFin());
+                sb.append(dateTo);
             }
 
             textViewDescripcion2.setText(sb.toString());

@@ -11,6 +11,7 @@ import android.widget.VideoView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
+import com.xpomanager.models.Literal;
 import com.xpomanager.utils.QR;
 import com.xpomanager.models.Exposicion;
 import com.xpomanager.models.ExposicionIdioma;
@@ -105,6 +106,7 @@ public class ControladorPrincipal extends Application {
         HashMap<Nivel, List<Pregunta>> preguntas = new HashMap<>();
         HashMap<Idioma, PreguntaIdioma> preguntaIdiomas;
         HashMap<Idioma, ExposicionIdioma> exposicionIdiomas = new HashMap<>();
+        HashMap<Idioma, String> traducciones = new HashMap<>();
 
         if (exposicion != null) {
 
@@ -139,10 +141,23 @@ public class ControladorPrincipal extends Application {
 
                 exposicionIdiomas.put(findIdiomaExposicionByIdioma(idioma), exposicionIdiomasAux);
             }
-        }
 
-        exposicion.setPreguntas(preguntas);
-        exposicion.setExposicionIdiomas(exposicionIdiomas);
+            // Transforma List<Literal> a HashMap<Idioma, String>
+            for (Nivel nivel: exposicion.getNiveles()) {
+                for (Literal literal: nivel.getLiterales()) {
+                    for (Idioma idioma: exposicion.getIdiomas()) {
+                        if (idioma.getNombre().equals(literal.getIdioma())) {
+                            traducciones.put(idioma, literal.getLiteral());
+                        }
+                    }
+                }
+
+                nivel.setTraducciones(traducciones);
+            }
+
+            exposicion.setPreguntas(preguntas);
+            exposicion.setExposicionIdiomas(exposicionIdiomas);
+        }
     }
 
     private Nivel findNivelExposicionByNivel(Nivel nivel) {
