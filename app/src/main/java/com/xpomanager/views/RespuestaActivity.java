@@ -24,6 +24,7 @@ import com.xpomanager.R;
 import com.xpomanager.controllers.ControladorJuego;
 import com.xpomanager.controllers.ControladorPrincipal;
 import com.xpomanager.models.ExposicionIdioma;
+import com.xpomanager.models.Pregunta;
 import com.xpomanager.models.PreguntaIdioma;
 import com.xpomanager.utils.QR;
 import java.io.File;
@@ -77,7 +78,8 @@ public class RespuestaActivity extends AppCompatActivity {
 
         // - - - - - - - - - - Imagen de Personaje
         ConstraintLayout constraintLayoutBackground = findViewById(R.id.ConstraintLayoutBackground);
-        String filename = preguntaIdioma.getLinkRespuestaCorrecta();
+        String filename = GetImagenSRC();
+
         if ( (filename != null) && (new File( QSTIMG_FOLDER + filename ).exists()) )
         {
             bitmap = BitmapFactory.decodeFile( QSTIMG_FOLDER + filename );
@@ -214,5 +216,13 @@ public class RespuestaActivity extends AppCompatActivity {
                 try { theExecActivity(); } catch (Exception ex) {  }
             }
         }.start();
+    }
+    public String GetImagenSRC()
+    {
+        int preguntan=(controladorJuego.getCurrentPregunta(controladorJuego.getCurrentPreguntaIdioma()));
+        ControladorPrincipal controladorPrincipal = ((ControladorPrincipal) super.getApplication());
+        String retu = controladorPrincipal.getExposicion().getPreguntas().get(controladorJuego.getNivel()).get((preguntan -1)).getImagenRespuestaCorrectaSrc();
+
+        return retu;
     }
 }

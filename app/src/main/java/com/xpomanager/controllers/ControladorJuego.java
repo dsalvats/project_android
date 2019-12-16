@@ -72,7 +72,7 @@ public class ControladorJuego {
     }
 
     // TODO: Pasar respuestas a LinkedHashMap
-    private int getCurrentPregunta(PreguntaIdioma preguntaIdioma) {
+    public int getCurrentPregunta(PreguntaIdioma preguntaIdioma) {
         //List<PreguntaIdioma> indexes = new ArrayList<>(respuestas.keySet());
         int index = 0;
 

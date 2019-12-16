@@ -2,9 +2,15 @@ package com.xpomanager.views;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Environment;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,19 +22,31 @@ import com.xpomanager.controllers.ControladorPrincipal;
 import com.xpomanager.models.Exposicion;
 import com.xpomanager.models.ExposicionIdioma;
 import com.xpomanager.models.Idioma;
+import com.xpomanager.models.Pregunta;
 import com.xpomanager.models.PreguntaIdioma;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.ResourceBundle;
+
 
 public class PreguntaActivity extends AppCompatActivity {
+
+    /*************
+     *  CONST    *
+     *************/
+    private final static String APP_FOLDER = Environment.getExternalStorageDirectory().getAbsolutePath() + "/XPOmanager/data/";
+    private final static String IMAGES_FOLDER = APP_FOLDER + "Imagenes/Elements/";
+    private final static String QSTIMG_FOLDER = APP_FOLDER + "Imagenes/Preguntas/";
 
     /*************
      * ATRIBUTOS *
      *************/
     ControladorJuego controladorJuego;
     PreguntaIdioma preguntaIdioma;
+    ConstraintLayout constraintLayoutImagenPregunta;
     ConstraintLayout constraintLayoutRespuesta1;
     ConstraintLayout constraintLayoutRespuesta2;
     ConstraintLayout constraintLayoutRespuesta3;
@@ -79,12 +97,31 @@ public class PreguntaActivity extends AppCompatActivity {
         textViewResumen = findViewById(R.id.TextViewResumen);
         textViewResumen.setText(controladorJuego.getStringProgress());
         textViewTiempo = findViewById(R.id.TextViewTimpo);
+        //IMAGEN PREGUNTA
+        constraintLayoutImagenPregunta = findViewById(R.id.ConstraintLayoutLateralPregunta);
+        LoadImagenPregunta();
 
         // RESPUESTAS ConstraintLayouts
         constraintLayoutRespuesta1 = findViewById(R.id.ConstraintLayoutLateralRespuesta1);
         constraintLayoutRespuesta2 = findViewById(R.id.ConstraintLayoutLateralRespuesta2);
         constraintLayoutRespuesta3 = findViewById(R.id.ConstraintLayoutLateralRespuesta3);
         constraintLayoutRespuesta4 = findViewById(R.id.ConstraintLayoutLateralRespuesta4);
+        if(!RespIsText())
+        {
+            LoadImagenesRespuestas();
+        }
+        Bitmap bitmap;
+        ControladorPrincipal controladorPrincipal = ((ControladorPrincipal) super.getApplication());
+        // - - - - - - - - - - Imagen de Personaje
+        ImageView imageViewPersonaje = findViewById(R.id.ImageViewPersonaje);
+        bitmap = controladorPrincipal.getPersonajeImageBitmap( controladorJuego.getPersonaje() );
+        imageViewPersonaje.setImageBitmap(bitmap);
+
+        // - - - - - - - - - - Imagen de Idioma
+        ImageView imageViewBandera = findViewById(R.id.ImageViewBandera);
+        bitmap = controladorPrincipal.getIdiomaImageBitmap( controladorJuego.getIdioma() );
+        imageViewBandera.setImageBitmap(bitmap);
+
 
         // RESPUESTAS TextViews
 
@@ -115,6 +152,7 @@ public class PreguntaActivity extends AppCompatActivity {
         textViewRespuestas.add(textViewRespuesta2);
         textViewRespuestas.add(textViewRespuesta3);
         textViewRespuestas.add(textViewRespuesta4);
+
 
         Collections.shuffle(textViewRespuestas);
 
@@ -151,7 +189,7 @@ public class PreguntaActivity extends AppCompatActivity {
             }
         });
 
-        timer = new CountDownTimer(11000000, 100000) //10 second Timer
+        timer = new CountDownTimer(11000, 1000) //10 second Timer
         {
             public void onTick(long l)
             {
@@ -194,5 +232,70 @@ public class PreguntaActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+    public String GetImagenSRC()
+    {
+        int preguntan=(controladorJuego.getCurrentPregunta(controladorJuego.getCurrentPreguntaIdioma()));
+        ControladorPrincipal controladorPrincipal = ((ControladorPrincipal) super.getApplication());
+        String retu = controladorPrincipal.getExposicion().getPreguntas().get(controladorJuego.getNivel()).get((preguntan -1)).getImagenRespuestaCorrectaSrc();
 
+        return retu;
+    }
+    private boolean RespIsText()
+    {
+        int preguntan=(controladorJuego.getCurrentPregunta(controladorJuego.getCurrentPreguntaIdioma()));
+        Pregunta pre = controladorJuego.getExposicion().getPreguntas().get(controladorJuego.getNivel()).get((preguntan -1));
+        if(pre.getImagenRespuestaIncorrecta1Src() != null && pre.getImagenRespuestaIncorrecta2Src() !=null && pre.getImagenRespuestaIncorrecta3Src() != null && pre.getImagenRespuestaCorrectaSrc() != null)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+    private void LoadImagenesRespuestas()
+    {
+
+        int preguntan=(controladorJuego.getCurrentPregunta(controladorJuego.getCurrentPreguntaIdioma()));
+        Pregunta pre = controladorJuego.getExposicion().getPreguntas().get(controladorJuego.getNivel()).get((preguntan -1));
+
+        String respCorrecta = pre.getImagenRespuestaCorrectaSrc();
+        String respIncorrecta1 = pre.getImagenRespuestaIncorrecta1Src();
+        String respIncorrecta2= pre.getImagenRespuestaIncorrecta2Src();
+        String respIncorrecta3 = pre.getImagenRespuestaIncorrecta3Src();
+
+        Bitmap bitmaprespCorrecta = null;
+        bitmaprespCorrecta = BitmapFactory.decodeFile(   QSTIMG_FOLDER + respCorrecta);
+
+        Bitmap bitmaprespIncorrecta1 = BitmapFactory.decodeFile(   QSTIMG_FOLDER + respIncorrecta1);
+        Bitmap bitmaprespIncorrecta2 = BitmapFactory.decodeFile(   QSTIMG_FOLDER + respIncorrecta2);
+        Bitmap bitmaprespIncorrecta3 = BitmapFactory.decodeFile(   QSTIMG_FOLDER + respIncorrecta3);
+        if(bitmaprespCorrecta != null)
+        {
+            constraintLayoutRespuesta1.setBackground( new BitmapDrawable(getResources(), bitmaprespCorrecta));
+        }
+
+        constraintLayoutRespuesta2.setBackground( new BitmapDrawable(getResources(), bitmaprespIncorrecta1));
+        constraintLayoutRespuesta3.setBackground( new BitmapDrawable(getResources(), bitmaprespIncorrecta2));
+        constraintLayoutRespuesta4.setBackground( new BitmapDrawable(getResources(), bitmaprespIncorrecta3));
+    }
+    public void LoadImagenPregunta()
+    {
+        String filename = GetImagenSRC();
+        Bitmap  bitmap;
+        if ( (filename != null) && (new File( QSTIMG_FOLDER + filename ).exists()) )
+        {
+
+            bitmap = BitmapFactory.decodeFile( QSTIMG_FOLDER + filename );
+        }
+        else if ( new File( IMAGES_FOLDER + "appimage.jpg" ).exists() )
+        {
+            bitmap = BitmapFactory.decodeFile(IMAGES_FOLDER + "appimage.jpg" );
+        }
+        else
+        {
+            bitmap = BitmapFactory.decodeFile(IMAGES_FOLDER + "defaultbg.jpg");
+        }
+        constraintLayoutImagenPregunta.setBackground( new BitmapDrawable(getResources(), bitmap));
+    }
 }
