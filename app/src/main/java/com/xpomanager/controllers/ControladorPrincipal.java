@@ -4,14 +4,12 @@ import android.app.Application;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Environment;
 import android.widget.VideoView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
-import com.xpomanager.R;
 import com.xpomanager.models.Literal;
 import com.xpomanager.utils.QR;
 import com.xpomanager.models.Exposicion;
@@ -47,15 +45,8 @@ public class ControladorPrincipal extends Application {
     private final static String APP_FOLDER = Environment.getExternalStorageDirectory().getAbsolutePath() + "/XPOmanager/data/";
     private final static String IMAGES_FOLDER = APP_FOLDER + "Imagenes/Elements/";
     private final static String JSON_PATH = APP_FOLDER + "exposicion.json";
-    private final static String DEFAULT_PERSONAJE_IMAGE_SRC = IMAGES_FOLDER + "charE0I3.jpg";
-    private final static String DEFAULT_IDIOMA_IMAGE_SRC = IMAGES_FOLDER + "flag1.jpg";
-    private final static String DEFAULT_APP_IMAGE_SRC = IMAGES_FOLDER + "spaceship.webm";
-    private final static String DEFAULT_REVIEW_IMAGE_SRC = IMAGES_FOLDER + "sumimage.jpg";
-    private final static String DEFAULT_LOGO_GRUPO_SRC = IMAGES_FOLDER + "group_logo.png";
-    private final static String DEFAULT_LOGO_MUSEO_SRC = IMAGES_FOLDER + "museum_logo.png";
     private final static String DEFAULT_PLAY_BUTTON_SRC = IMAGES_FOLDER + "playnow.png";
     private final static String DEFAULT_HOME_BUTTON_SRC = IMAGES_FOLDER + "HomeIcon.png";
-    private final static String DEFAULT_EXPO_URL = "https://mnactec.cat/es/inicio";
 
     /*************
      * ATRIBUTOS *
@@ -247,13 +238,12 @@ public class ControladorPrincipal extends Application {
         Bitmap bitmap = null;
         String src = exposicion.getReviewImageSrc();
 
-        if (src == null) {
-            src = DEFAULT_REVIEW_IMAGE_SRC;
-        }
-        if (new File(src).exists()) {
-            bitmap = BitmapFactory.decodeFile(src);
-        } else {
-            // TODO: Recuperar desde @drawable una imagen default
+        if (src != null) {
+            if (new File(src).exists()) {
+                bitmap = BitmapFactory.decodeFile(src);
+            } else {
+                // TODO: Recuperar desde @drawable una imagen default
+            }
         }
 
         return bitmap;

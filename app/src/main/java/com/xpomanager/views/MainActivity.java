@@ -323,7 +323,7 @@ public class MainActivity extends AppCompatActivity {
 
                     if (controladorPrincipal.getControladorJuego().hasNextPregunta()) {
                         Intent intent = new Intent(view.getContext(), PreguntaActivity.class);
-                        startActivityForResult(intent, 0);
+                        startActivity(intent);
                         finish();
                     }
                 }

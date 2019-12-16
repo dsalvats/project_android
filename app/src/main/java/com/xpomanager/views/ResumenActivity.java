@@ -16,25 +16,27 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import com.xpomanager.R;
 import com.xpomanager.controllers.ControladorJuego;
 import com.xpomanager.controllers.ControladorPrincipal;
+import com.xpomanager.models.ExposicionIdioma;
+import com.xpomanager.models.Idioma;
 import com.xpomanager.utils.QR;
-
-import java.io.Console;
 
 public class ResumenActivity extends AppCompatActivity {
 
     /*************
      * ATRIBUTOS *
      *************/
+    ControladorPrincipal controladorPrincipal;
     ControladorJuego controladorJuego;
-    ConstraintLayout BackgroundLayout;
 
-    ImageView ImageViewInicio;
-    ImageView ImageViewCharachter;
-    ImageView ImageViewQR;
+    ConstraintLayout backgroundLayout;
 
-    TextView TextViewQRExposicionName;
-    TextView TextViewReview;
-    TextView TextViewRespuesta;
+    ImageView imageViewInicio;
+    ImageView imageViewCharachter;
+    ImageView imageViewQR;
+
+    TextView textViewQRExposicionName;
+    TextView textViewReview;
+    TextView textViewRespuesta;
 
     @SuppressLint("MissingSuperCall")
     @Override
@@ -47,63 +49,78 @@ public class ResumenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_resumen);
+
         //Principal Controler
-        ControladorPrincipal controladorPrincipal = (ControladorPrincipal) super.getApplication();
+        controladorPrincipal = (ControladorPrincipal) super.getApplication();
         controladorJuego = controladorPrincipal.getControladorJuego();
 
         //ConstraintLayout to set ImageBackground
-        BackgroundLayout = findViewById(R.id.ConstraintLayoutBackground);
-        // TextViews
-        TextViewReview = findViewById(R.id.TextViewReview);
-        TextViewRespuesta = findViewById(R.id.TextViewDescripcionRespuesta);
-        TextViewQRExposicionName = findViewById(R.id.textViewExposicionName);
-        // ImageViews
-        ImageViewInicio = findViewById(R.id.ImageViewInicio);
-        ImageViewCharachter = findViewById(R.id.ImageViewPersonaje);
-        ImageViewQR = findViewById(R.id.imageViewQRCode);
+        backgroundLayout = findViewById(R.id.ConstraintLayoutBackground);
 
-        CargarElementos(controladorPrincipal);
+        // TextViews
+        textViewReview = findViewById(R.id.TextViewReview);
+        textViewRespuesta = findViewById(R.id.TextViewDescripcionRespuesta);
+        textViewQRExposicionName = findViewById(R.id.textViewExposicionName);
+
+        // ImageViews
+        imageViewInicio = findViewById(R.id.ImageViewInicio);
+        imageViewCharachter = findViewById(R.id.ImageViewPersonaje);
+        imageViewQR = findViewById(R.id.imageViewQRCode);
+
+        cargarElementos();
 
         //Events
-        ImageViewInicio.setOnClickListener(new View.OnClickListener() {
+        imageViewInicio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), MainActivity.class);
-                startActivityForResult(intent, 0);
+                startActivity(intent);
                 finish();
             }
         });
     }
-    protected void CargarElementos(ControladorPrincipal cntrlPrincipal)
+    protected void cargarElementos()
     {
+        Idioma idioma = controladorJuego.getIdioma();
+        ExposicionIdioma exposicionIdioma = controladorJuego.getExposicion().getExposicionIdiomas().get(idioma);
+
         //Cargar Imagen Fondo
-        Drawable drawable = new BitmapDrawable(this.getResources(), cntrlPrincipal.getResumImageBitmap());
-        BackgroundLayout.setBackground(drawable);
+        Drawable drawable = new BitmapDrawable(this.getResources(), controladorPrincipal.getResumImageBitmap());
+        backgroundLayout.setBackground(drawable);
+
         //Cargar ImagenPersonaje
         System.out.println(controladorJuego.getPersonaje().getNombre());
-        Bitmap PersonajeBitmap = cntrlPrincipal.getPersonajeImageBitmap(controladorJuego.getPersonaje());
-        ImageViewCharachter.setImageBitmap(PersonajeBitmap);
+        Bitmap PersonajeBitmap = controladorPrincipal.getPersonajeImageBitmap(controladorJuego.getPersonaje());
+        imageViewCharachter.setImageBitmap(PersonajeBitmap);
+
         //Cargar Imagen HOMEBUTTOM
-        ImageViewInicio.setImageBitmap(cntrlPrincipal.getHomeButtomBitmap());
+        imageViewInicio.setImageBitmap(controladorPrincipal.getHomeButtomBitmap());
+
         //Cargar QR
-        String Link = cntrlPrincipal.getExposicion().getExposicionIdiomas().get(controladorJuego.getIdioma()).getSummURL ();
-        System.out.println(Link);
-        ImageViewQR.setImageBitmap(QR.encodeAsBitmap(Link));
+        String Link = exposicionIdioma.getSummURL ();
+        imageViewQR.setImageBitmap(QR.encodeAsBitmap(Link));
+
         //Cargar els textViews
-        TextViewReview.setText(controladorJuego.getStringProgress());
+        textViewReview.setText(controladorJuego.getStringProgress());
 
-        String mensaje1 = cntrlPrincipal.getExposicion().getExposicionIdiomas().get(controladorJuego.getIdioma()).getSummCongrats();
-        String mensaje2 = cntrlPrincipal.getExposicion().getExposicionIdiomas().get(controladorJuego.getIdioma()).getSummComment();
-        String mensaje3 = cntrlPrincipal.getExposicion().getExposicionIdiomas().get(controladorJuego.getIdioma()).getSummGameText();
-        String mensaje4 = cntrlPrincipal.getExposicion().getExposicionIdiomas().get(controladorJuego.getIdioma()).getSummURL();
-        String mensaje5 = cntrlPrincipal.getExposicion().getExposicionIdiomas().get(controladorJuego.getIdioma()).getSummURLText();
-        String mensaje6 = cntrlPrincipal.getExposicion().getExposicionIdiomas().get(controladorJuego.getIdioma()).getSummBye();
+        if (exposicionIdioma != null) {
+            String mensaje1 = exposicionIdioma.getSummCongrats();
+            String mensaje2 = exposicionIdioma.getSummComment();
+            String mensaje3 = exposicionIdioma.getSummGameText();
+            String mensaje4 = exposicionIdioma.getSummURL();
+            String mensaje5 = exposicionIdioma.getSummURLText();
+            String mensaje6 = exposicionIdioma.getSummBye();
 
+            textViewQRExposicionName.setText(mensaje5);
 
+            StringBuilder sb = new StringBuilder();
 
+            sb.append(mensaje1).append(" ");
+            sb.append(mensaje2).append(" ");
+            sb.append(mensaje3);
 
-        TextViewQRExposicionName.setText(mensaje5);
-        TextViewRespuesta.setText(mensaje1+" "+mensaje2+" "+mensaje3);
+            textViewRespuesta.setText(sb.toString());
+        }
 
     }
 
