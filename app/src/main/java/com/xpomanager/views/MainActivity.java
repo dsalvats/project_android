@@ -50,6 +50,11 @@ public class MainActivity extends AppCompatActivity {
     private final static int DEFAULT_INT_IDIOMA = 0;
     private final static int DEFAULT_INT_NIVEL = 0;
 
+
+    // - - - - - MaGoMo
+    public static int calladmincounter = 0;
+    public static boolean calladmin = false;
+
     /*************
      * ATRIBUTOS *
      *************/
@@ -114,7 +119,48 @@ public class MainActivity extends AppCompatActivity {
         setDefaultSettings();
         fillElements();
         setElementsListeners();
+
+        // - - - - - MaGoMo - Call Admin Activity
+        setCallAdmin();
+
     }
+
+    // - - - - - MaGoMo - Call Admin Activity
+    public void setCallAdmin()
+    {
+        ImageView imageViewLogoMuseo = findViewById(R.id.ImageViewLogoMuseo);
+        imageViewLogoMuseo.setOnClickListener( new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view) { pickimg(); }
+        } );
+        TextView textViewLinkExposicion = findViewById(R.id.TextViewLinkExposicion);
+        textViewLinkExposicion.setOnClickListener( new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view) { calladmin(); }
+        } );
+    }
+    // - - - - - MaGoMo - Call Admin Activity
+    public void pickimg()
+    {
+        if((++calladmincounter)==5) { calladmin = true; }
+        else if (calladmincounter>5) { calladmin = false; calladmincounter = 0; }
+    }
+    // - - - - - MaGoMo - Call Admin Activity
+    public void calladmin()
+    {
+        if(calladmin)
+        {
+            calladmin = false;
+            Intent intent;
+            intent = new Intent( getBaseContext(), AdminActivity.class );
+            startActivity( intent );
+            finish();
+        }
+    }
+
+
 
     /**
      * Comprueba los permisos que tiene la aplicación
@@ -323,7 +369,7 @@ public class MainActivity extends AppCompatActivity {
 
                     if (controladorPrincipal.getControladorJuego().hasNextPregunta()) {
                         Intent intent = new Intent(view.getContext(), PreguntaActivity.class);
-                        startActivity(intent);
+                        startActivityForResult(intent, 0);
                         finish();
                     }
                 }

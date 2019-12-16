@@ -38,6 +38,10 @@
             android:name=".views.ResumenActivity"
             android:noHistory="true"
             android:screenOrientation="landscape"></activity>
+        <activity
+            android:name=".views.AdminActivity"
+            android:noHistory="true"
+            android:screenOrientation="landscape"></activity>
 
         <meta-data
             android:name="preloaded_fonts"

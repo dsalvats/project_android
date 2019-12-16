@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Environment;
@@ -15,6 +16,7 @@ import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,8 +25,9 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import com.xpomanager.R;
 import com.xpomanager.controllers.ControladorJuego;
 import com.xpomanager.controllers.ControladorPrincipal;
+import com.xpomanager.models.Exposicion;
 import com.xpomanager.models.ExposicionIdioma;
-import com.xpomanager.models.Pregunta;
+import com.xpomanager.models.Personaje;
 import com.xpomanager.models.PreguntaIdioma;
 import com.xpomanager.utils.QR;
 import java.io.File;
@@ -78,8 +81,7 @@ public class RespuestaActivity extends AppCompatActivity {
 
         // - - - - - - - - - - Imagen de Personaje
         ConstraintLayout constraintLayoutBackground = findViewById(R.id.ConstraintLayoutBackground);
-        String filename = GetImagenSRC();
-
+        String filename = preguntaIdioma.getLinkRespuestaCorrecta();
         if ( (filename != null) && (new File( QSTIMG_FOLDER + filename ).exists()) )
         {
             bitmap = BitmapFactory.decodeFile( QSTIMG_FOLDER + filename );
@@ -119,7 +121,7 @@ public class RespuestaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), MainActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, 0);
                 finish();
             }
         });
@@ -216,13 +218,5 @@ public class RespuestaActivity extends AppCompatActivity {
                 try { theExecActivity(); } catch (Exception ex) {  }
             }
         }.start();
-    }
-    public String GetImagenSRC()
-    {
-        int preguntan=(controladorJuego.getCurrentPregunta(controladorJuego.getCurrentPreguntaIdioma()));
-        ControladorPrincipal controladorPrincipal = ((ControladorPrincipal) super.getApplication());
-        String retu = controladorPrincipal.getExposicion().getPreguntas().get(controladorJuego.getNivel()).get((preguntan -1)).getImagenRespuestaCorrectaSrc();
-
-        return retu;
     }
 }
