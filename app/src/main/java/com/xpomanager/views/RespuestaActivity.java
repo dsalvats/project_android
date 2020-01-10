@@ -4,9 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Environment;
@@ -16,8 +15,6 @@ import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -25,11 +22,10 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import com.xpomanager.R;
 import com.xpomanager.controllers.ControladorJuego;
 import com.xpomanager.controllers.ControladorPrincipal;
-import com.xpomanager.models.Exposicion;
 import com.xpomanager.models.ExposicionIdioma;
-import com.xpomanager.models.Personaje;
 import com.xpomanager.models.PreguntaIdioma;
 import com.xpomanager.utils.QR;
+
 import java.io.File;
 
 public class RespuestaActivity extends AppCompatActivity {
@@ -37,8 +33,7 @@ public class RespuestaActivity extends AppCompatActivity {
     private final static String APP_FOLDER = Environment.getExternalStorageDirectory().getAbsolutePath() + "/XPOmanager/data/";
     private final static String IMAGES_FOLDER = APP_FOLDER + "Imagenes/Elements/";
     private final static String QSTIMG_FOLDER = APP_FOLDER + "Imagenes/Preguntas/";
-
-    public static CountDownTimer mcd;
+    private static CountDownTimer mcd;
 
     /*************
      * ATRIBUTOS *
@@ -47,8 +42,6 @@ public class RespuestaActivity extends AppCompatActivity {
     ControladorJuego controladorJuego;
     TextView textViewRespuestaBool;
     TextView textViewResumen;
-
-    Bitmap bitmap;
 
     @SuppressLint("MissingSuperCall")
     @Override
@@ -79,7 +72,9 @@ public class RespuestaActivity extends AppCompatActivity {
         // - - - - - - - - - - MaGoMo
         ExposicionIdioma literals = controladorJuego.getExposicion().getExposicionIdiomas().get( controladorJuego.getIdioma() );
 
-        // - - - - - - - - - - Imagen de Personaje
+        Bitmap bitmap;
+
+        // - - - - - - - - - - Imagen de BackGround
         ConstraintLayout constraintLayoutBackground = findViewById(R.id.ConstraintLayoutBackground);
         String filename = preguntaIdioma.getLinkRespuestaCorrecta();
         if ( (filename != null) && (new File( QSTIMG_FOLDER + filename ).exists()) )
@@ -121,13 +116,11 @@ public class RespuestaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), MainActivity.class);
-                startActivityForResult(intent, 0);
+                startActivity( intent );
+                mcd.cancel();
                 finish();
             }
         });
-
-        // - - - - - - - - - - Texto nivel
-        // TextView	TextViewEntrarId
 
         // - - - - - - - - - - Texto Respuesta correcta
         TextView textViewRespuestaCorrecta = findViewById(R.id.TextViewRespuestaCorrecta);

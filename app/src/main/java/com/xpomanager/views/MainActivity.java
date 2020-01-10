@@ -50,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
     private final static int DEFAULT_INT_IDIOMA = 0;
     private final static int DEFAULT_INT_NIVEL = 0;
 
-
     // - - - - - MaGoMo
     public static int calladmincounter = 0;
     public static boolean calladmin = false;
@@ -120,11 +119,10 @@ public class MainActivity extends AppCompatActivity {
         fillElements();
         setElementsListeners();
 
-        // - - - - - MaGoMo - Call Admin Activity
-        setCallAdmin();
-
+        setCallAdmin(); // - - - - - MaGoMo - Call Admin Activity
     }
 
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // - - - - - MaGoMo - Call Admin Activity
     public void setCallAdmin()
     {
@@ -138,29 +136,25 @@ public class MainActivity extends AppCompatActivity {
         textViewLinkExposicion.setOnClickListener( new View.OnClickListener()
         {
             @Override
-            public void onClick(View view) { calladmin(); }
+            public void onClick(View view) { calladmin(false); }
         } );
     }
     // - - - - - MaGoMo - Call Admin Activity
-    public void pickimg()
-    {
-        if((++calladmincounter)==5) { calladmin = true; }
-        else if (calladmincounter>5) { calladmin = false; calladmincounter = 0; }
-    }
+    public void pickimg() { if((++calladmincounter)==5) { calladmin = true; } }
     // - - - - - MaGoMo - Call Admin Activity
-    public void calladmin()
+    public void calladmin(Boolean nologin)
     {
         if(calladmin)
         {
             calladmin = false;
             Intent intent;
-            intent = new Intent( getBaseContext(), AdminActivity.class );
+            intent = new Intent( getBaseContext(), AdminActivity.class ).putExtra("nologin", nologin);
             startActivity( intent );
             finish();
-        }
+        } else { calladmincounter = 0; }
     }
-
-
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     /**
      * Comprueba los permisos que tiene la aplicación
@@ -369,7 +363,7 @@ public class MainActivity extends AppCompatActivity {
 
                     if (controladorPrincipal.getControladorJuego().hasNextPregunta()) {
                         Intent intent = new Intent(view.getContext(), PreguntaActivity.class);
-                        startActivityForResult(intent, 0);
+                        startActivity(intent);
                         finish();
                     }
                 }

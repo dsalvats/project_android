@@ -1,0 +1,8 @@
+	// * * * * * * * * * 
+	// ADD FOLLOWED SCRIPT INSIDE THE application TAG
+	// * * * * * * * * * 
+
+        <activity
+            android:name=".views.AdminActivity"
+            android:noHistory="false"
+            android:screenOrientation="landscape"></activity>

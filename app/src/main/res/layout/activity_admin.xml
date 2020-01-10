@@ -8,7 +8,6 @@
     android:background="@drawable/defaultbg"
     tools:context=".views.AdminActivity">
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/ConstraintLayoutContainer"
         android:layout_width="match_parent"
@@ -49,11 +48,10 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/ConstraintLayoutBox"
-            android:layout_width="500dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/TextTitle">
 
@@ -61,11 +59,11 @@
 
             <LinearLayout
                 android:id="@+id/linearLayoutLogin"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
                 android:gravity="center_horizontal"
                 android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -73,34 +71,36 @@
                 <EditText
                     android:id="@+id/EditTextUser"
                     android:layout_width="300sp"
-                    android:layout_height="50sp"
-                    android:layout_margin="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
                     android:background="#80FFFFFF"
                     android:fontFamily="@font/lato"
                     android:hint="user"
+                    android:padding="10dp"
                     android:textAlignment="center"
                     android:textColor="#000000"
-                    android:textSize="30sp"
+                    android:textSize="25sp"
                     android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/EditTextPassword"
                     android:layout_width="300sp"
-                    android:layout_height="50sp"
-                    android:layout_margin="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
                     android:background="#80FFFFFF"
                     android:fontFamily="@font/lato"
                     android:hint="password"
+                    android:padding="10dp"
                     android:password="true"
                     android:textAlignment="center"
                     android:textColor="#000000"
-                    android:textSize="30sp"
+                    android:textSize="25sp"
                     android:textStyle="bold" />
 
                 <Button
                     android:id="@+id/ButtonLogin"
                     android:layout_width="300dp"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
                     android:layout_margin="10sp"
                     android:background="#d4109a"
                     android:fontFamily="@font/roboto_mono_medium"
@@ -116,9 +116,11 @@
 
             <LinearLayout
                 android:id="@+id/linearLayoutButtons"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:minWidth="500dp"
                 android:orientation="horizontal"
                 android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -133,6 +135,7 @@
                     android:layout_weight=".5"
                     android:background="#2F37CF"
                     android:fontFamily="@font/roboto_mono_medium"
+                    android:minWidth="200dp"
                     android:padding="10sp"
                     android:text="App Shutdown"
                     android:textColor="#f0ce17"
@@ -147,6 +150,7 @@
                     android:layout_weight=".5"
                     android:background="#2F37CF"
                     android:fontFamily="@font/roboto_mono_medium"
+                    android:minWidth="200dp"
                     android:padding="10sp"
                     android:text="Update Data"
                     android:textColor="#f0ce17"

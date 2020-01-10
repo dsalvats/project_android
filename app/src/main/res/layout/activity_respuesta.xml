@@ -5,7 +5,7 @@
     android:id="@+id/ConstraintLayoutMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#666666"
+    android:background="#0B548B"
     tools:context=".views.RespuestaActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,7 +15,7 @@
         app:layout_constraintWidth_percent="1">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/ConstraintLayoutLateralPregunta"
+            android:id="@+id/ConstraintLayoutLateralRespuesta"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             app:layout_constraintStart_toStartOf="parent"
